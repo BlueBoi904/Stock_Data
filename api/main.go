@@ -2,20 +2,20 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
-	"github.com/Finnhub-Stock-API/finnhub-go"
-	"github.com/Stock_Data/api/conf"
 	"log"
 	"net/http"
-)
 
+	"github.com/Finnhub-Stock-API/finnhub-go"
+	"github.com/Stock_Data/api/conf"
+)
 
 func homepage(w http.ResponseWriter, r *http.Request) {
 	_, _ = fmt.Fprintf(w, "Homepage endpoint hit!")
 }
 
 func quote(w http.ResponseWriter, r *http.Request) {
-	_, _ = fmt.Fprintf(w, "Quote page hit!")
 	config := conf.Initialize("./conf")
 	apiKey := config.GetString("apiKey")
 
@@ -29,8 +29,7 @@ func quote(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-
-	fmt.Printf("Quote: %v", quote.C)
+	json.NewEncoder(w).Encode(quote)
 }
 
 func handleRequests() {

@@ -6,6 +6,7 @@ import (
 	"github.com/spf13/viper"
 )
 
+//InternalConfig For Storing Items across app
 type InternalConfig struct {
 	v *viper.Viper
 }

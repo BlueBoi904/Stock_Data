@@ -28,6 +28,7 @@ func news(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
+
 	json.NewEncoder(w).Encode(generalNews)
 }
 func quote(w http.ResponseWriter, r *http.Request) {

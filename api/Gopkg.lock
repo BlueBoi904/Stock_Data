@@ -88,6 +88,14 @@
   version = "v1.8.0"
 
 [[projects]]
+  digest = "1:c5dfe46811af7e2eff7c11fc84b6c841520338613c056f659f262d5a4fb42fa8"
+  name = "github.com/rs/cors"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "db0fe48135e83b5812a5a31be0eea66984b1b521"
+  version = "v1.7.0"
+
+[[projects]]
   digest = "1:737edd9913ce17ce195f540502be64dcc2cf14168e610ede7a945cd9bb0a8ce7"
   name = "github.com/spf13/afero"
   packages = [
@@ -137,6 +145,14 @@
   pruneopts = "UT"
   revision = "2ef7124db659d49edac6aa459693a15ae36c671a"
   version = "v1.2.0"
+
+[[projects]]
+  branch = "master"
+  digest = "1:31954f1441c6b5d622508e15b00d61bfa1627df90c15e2a6c7f03c75d46fdb89"
+  name = "github.com/totalwinelabs/go-common"
+  packages = ["src/corshdr"]
+  pruneopts = "UT"
+  revision = "88f505c090d574359733c0b21f1f9b744df2d4ac"
 
 [[projects]]
   branch = "master"
@@ -192,9 +208,12 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/go-kit/kit/log",
     "github.com/go-kit/kit/transport/http",
     "github.com/gorilla/mux",
+    "github.com/rs/cors",
     "github.com/spf13/viper",
+    "github.com/totalwinelabs/go-common/src/corshdr",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

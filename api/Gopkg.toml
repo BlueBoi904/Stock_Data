@@ -40,3 +40,7 @@
 [[constraint]]
   name = "github.com/go-kit/kit"
   revision = "70f683dfda1e7b33a99f03700b24fd7a63ebb1ac"
+
+[[constraint]]
+  name = "github.com/rs/cors"
+  version = "1.7.0"

@@ -2,6 +2,22 @@
 
 
 [[projects]]
+  digest = "1:95de09d3195cd3a844b47f31d2475d7e4ff8ecaa85a602922c3e803d5dfa9c91"
+  name = "github.com/Finnhub-Stock-API/finnhub-go"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "8d7ee20fe3cbe0f2da74a4df5eb4443f6b043826"
+  version = "v1.1.5"
+
+[[projects]]
+  digest = "1:3d3da1dd49a4492069391f9ae0c3e39a8b6e96fb5e8b3e5bbfb8d4820e8d4c36"
+  name = "github.com/antihax/optional"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "c3f0ba9c1a592b971d66b2787679af55b5c58f21"
+  version = "v1.0.0"
+
+[[projects]]
   digest = "1:80057945464ffb5b0da1f026beb8df0e8dbd098eaf771a349291bed2cd29a83e"
   name = "github.com/fsnotify/fsnotify"
   packages = ["."]
@@ -35,6 +51,14 @@
   pruneopts = "UT"
   revision = "2fee6af1a9795aafbe0253a0cfbdf668e1fb8a9a"
   version = "v1.8.0"
+
+[[projects]]
+  digest = "1:9e1f58e0d3991f12e7b532161f56dc12c633fb01802ec60520d877599c2af2c5"
+  name = "github.com/golang/protobuf"
+  packages = ["proto"]
+  pruneopts = "UT"
+  revision = "d04d7b157bb510b1e0c10132224b616ac0e26b17"
+  version = "v1.4.2"
 
 [[projects]]
   digest = "1:25ebe6496abb289ef977c081b2d49f56dd97c32db4ca083d37f95923909ced02"
@@ -156,11 +180,25 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:7ccb2dbb79f60b4e530c7dc3a0b3681b3869cf7ea91c645735e4dd4e6e3264fd"
+  digest = "1:f8b491a7c25030a895a0e579742d07136e6958e77ef2d46e769db8eec4e58fcd"
   name = "golang.org/x/net"
-  packages = ["context/ctxhttp"]
+  packages = [
+    "context",
+    "context/ctxhttp",
+  ]
   pruneopts = "UT"
   revision = "627f9648deb96c27737b83199d44bb5c1010cbcf"
+
+[[projects]]
+  branch = "master"
+  digest = "1:911b45b658f5fab1a26259e2fd1085ab296f9d3e46117311d25f8dae51efe720"
+  name = "golang.org/x/oauth2"
+  packages = [
+    ".",
+    "internal",
+  ]
+  pruneopts = "UT"
+  revision = "bf48bf16ab8d622ce64ec6ce98d2c98f916b6303"
 
 [[projects]]
   branch = "master"
@@ -189,6 +227,58 @@
   version = "v0.3.3"
 
 [[projects]]
+  digest = "1:15bbb120d95283019f8891f2762fab3e735075b2cf9b378497277d2fe6c4abca"
+  name = "google.golang.org/appengine"
+  packages = [
+    "internal",
+    "internal/base",
+    "internal/datastore",
+    "internal/log",
+    "internal/remote_api",
+    "internal/urlfetch",
+    "urlfetch",
+  ]
+  pruneopts = "UT"
+  revision = "553959209a20f3be281c16dd5be5c740a893978f"
+  version = "v1.6.6"
+
+[[projects]]
+  digest = "1:2a628685d02a3eb98bd3b2b25778967113a5bdfae5be743e2612960b07780809"
+  name = "google.golang.org/protobuf"
+  packages = [
+    "encoding/prototext",
+    "encoding/protowire",
+    "internal/descfmt",
+    "internal/descopts",
+    "internal/detrand",
+    "internal/encoding/defval",
+    "internal/encoding/messageset",
+    "internal/encoding/tag",
+    "internal/encoding/text",
+    "internal/errors",
+    "internal/fieldnum",
+    "internal/fieldsort",
+    "internal/filedesc",
+    "internal/filetype",
+    "internal/flags",
+    "internal/genname",
+    "internal/impl",
+    "internal/mapsort",
+    "internal/pragma",
+    "internal/set",
+    "internal/strs",
+    "internal/version",
+    "proto",
+    "reflect/protoreflect",
+    "reflect/protoregistry",
+    "runtime/protoiface",
+    "runtime/protoimpl",
+  ]
+  pruneopts = "UT"
+  revision = "5c3dd7024aed895adfe053f26b5a479e991cbca9"
+  version = "v1.24.0"
+
+[[projects]]
   digest = "1:2a8ce9278a57dba0bca00383d26744e88324c2696ad8538b3f7a69067d02d78c"
   name = "gopkg.in/ini.v1"
   packages = ["."]
@@ -208,6 +298,7 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/Finnhub-Stock-API/finnhub-go",
     "github.com/go-kit/kit/log",
     "github.com/go-kit/kit/transport/http",
     "github.com/gorilla/mux",

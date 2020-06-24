@@ -15,6 +15,7 @@ func (ae AllErrors) Error() string {
 	return ae.Message
 }
 
+//EncodeError Make All errors passed as JSON
 func EncodeError(_ context.Context, err error, w http.ResponseWriter) {
 	if err == nil {
 		panic("EncodeError with nil Error")

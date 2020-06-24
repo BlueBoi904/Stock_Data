@@ -7,6 +7,8 @@ import (
 )
 
 type GetQuoteRequest struct {
+	Test string `request:"query" json:"test" log:"true"`
+	Base string `request:"query" json:"base" log:"true"`
 }
 
 func (gqr GetQuoteRequest) Info() commons.EndpointInfo {
@@ -25,9 +27,13 @@ type Response struct {
 }
 
 func (gqs GetQuoteService) Execute(ctx context.Context, req interface{}) (interface{}, error) {
-	return Response{}, commons.AllErrors{
-		Message: "Failure",
-	}
+	// temp := req.(*GetQuoteRequest)
+
+	return Response{
+			Message: "Success?",
+		}, commons.AllErrors{
+			Message: "You Messed Up",
+		}
 }
 
 func (gqs GetQuoteService) Log() string {

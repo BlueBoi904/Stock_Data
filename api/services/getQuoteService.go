@@ -3,12 +3,13 @@ package services
 import (
 	"context"
 
+	"github.com/Finnhub-Stock-API/finnhub-go"
 	"github.com/Stock_Data/api/commons"
+	"github.com/Stock_Data/api/conf"
 )
 
 type GetQuoteRequest struct {
-	Test string `request:"query" json:"test" log:"true"`
-	Base string `request:"query" json:"base" log:"true"`
+	Ticker string `request:"query" json:"ticker" log:"true"`
 }
 
 func (gqr GetQuoteRequest) Info() commons.EndpointInfo {
@@ -23,17 +24,29 @@ type GetQuoteService struct {
 }
 
 type Response struct {
-	Message string `json:"message"`
+	Message string        `json:"message"`
+	Quote   finnhub.Quote `json:"quote"`
 }
 
 func (gqs GetQuoteService) Execute(ctx context.Context, req interface{}) (interface{}, error) {
-	// temp := req.(*GetQuoteRequest)
+	config := conf.Initialize("./conf")
+	apiKey := config.GetString("apiKey")
+
+	// request := req.(*GetQuoteRequest)
+	finnhubClient := finnhub.NewAPIClient(finnhub.NewConfiguration()).DefaultApi
+	auth := context.WithValue(context.Background(), finnhub.ContextAPIKey, finnhub.APIKey{
+		Key: apiKey,
+	})
+	quote, _, err := finnhubClient.Quote(auth, "AAPL")
+
+	if err != nil {
+		return Response{}, err
+	}
 
 	return Response{
-			Message: "Success?",
-		}, commons.AllErrors{
-			Message: "You Messed Up",
-		}
+		Message: "Success",
+		Quote:   quote,
+	}, nil
 }
 
 func (gqs GetQuoteService) Log() string {

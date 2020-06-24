@@ -21,6 +21,7 @@ func (gqr GetQuoteRequest) Info() commons.EndpointInfo {
 }
 
 type GetQuoteService struct {
+	commons.BaseService
 }
 
 type Response struct {

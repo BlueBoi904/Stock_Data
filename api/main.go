@@ -21,7 +21,7 @@ func handleRequests() {
 
 	ctx := context.Background()
 	config := conf.Initialize("./conf")
-
+	config.PrintValues()
 	handlers := []commons.ServiceEndpoint{
 		{
 			Endpoint: new(services.GetQuoteRequest),

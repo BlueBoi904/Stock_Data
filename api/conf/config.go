@@ -16,6 +16,11 @@ func (i *InternalConfig) GetString(key string) string {
 	return i.v.GetString(key)
 }
 
+//GetConfig for Viper
+func (i *InternalConfig) GetConfig() *viper.Viper {
+	return i.v
+}
+
 //PrintValues Util to log all Vipers values
 func (i *InternalConfig) PrintValues() {
 	for _, k := range i.v.AllKeys() {

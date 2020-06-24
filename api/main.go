@@ -9,6 +9,7 @@ import (
 	"os/signal"
 	"syscall"
 
+	finnhub "github.com/Finnhub-Stock-API/finnhub-go"
 	"github.com/Stock_Data/api/commons"
 	"github.com/Stock_Data/api/conf"
 	"github.com/Stock_Data/api/services"
@@ -18,10 +19,18 @@ import (
 )
 
 func handleRequests() {
-
 	ctx := context.Background()
 	config := conf.Initialize("./conf")
-	config.PrintValues()
+
+	apiKey := config.GetString("apiKey")
+
+	finnhubClient := finnhub.NewAPIClient(finnhub.NewConfiguration()).DefaultApi
+	auth := context.WithValue(ctx, finnhub.ContextAPIKey, finnhub.APIKey{
+		Key: apiKey,
+	})
+
+	config.SetFinnClient(finnhubClient)
+
 	handlers := []commons.ServiceEndpoint{
 		{
 			Endpoint: new(services.GetQuoteRequest),
@@ -39,7 +48,7 @@ func handleRequests() {
 		logger = log.NewJSONLogger(log.NewSyncWriter(os.Stderr))
 	}
 
-	h := commons.GenerateHandlers(ctx, handlers, config, logger)
+	h := commons.GenerateHandlers(auth, handlers, config, logger)
 	c := cors.New(cors.Options{
 		AllowOriginFunc:  corshdr.AllowOriginFunc,
 		AllowCredentials: true,

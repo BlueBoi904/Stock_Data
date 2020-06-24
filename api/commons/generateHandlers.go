@@ -47,6 +47,10 @@ func GenerateRoutes(ctx context.Context, r *mux.Router, service Service, endpoin
 		v.SetConfig(config.GetConfig())
 	}
 
+	if v, ok := service.(FinnServiceConfigurable); ok {
+		v.SetFinnClient(config.GetFinnClient())
+	}
+
 	ws := ServiceLogging(service, logger)
 
 	r.Methods(

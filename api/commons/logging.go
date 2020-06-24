@@ -4,6 +4,7 @@ import (
 	"context"
 	"time"
 
+	finnhub "github.com/Finnhub-Stock-API/finnhub-go"
 	"github.com/go-kit/kit/log"
 	"github.com/spf13/viper"
 )
@@ -58,6 +59,10 @@ func (lm loggingMiddleware) Execute(ctx context.Context, req interface{}) (r int
 
 func (mw loggingMiddleware) GetConfig() *viper.Viper {
 	return mw.next.GetConfig()
+}
+
+func (mw loggingMiddleware) GetFinnClient() *finnhub.DefaultApiService {
+	return mw.next.GetFinnClient()
 }
 
 func (lm loggingMiddleware) Log() string {

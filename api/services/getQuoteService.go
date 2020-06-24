@@ -5,7 +5,6 @@ import (
 
 	"github.com/Finnhub-Stock-API/finnhub-go"
 	"github.com/Stock_Data/api/commons"
-	"github.com/Stock_Data/api/conf"
 )
 
 type GetQuoteRequest struct {
@@ -30,15 +29,9 @@ type Response struct {
 }
 
 func (gqs GetQuoteService) Execute(ctx context.Context, req interface{}) (interface{}, error) {
-	config := conf.Initialize("./conf")
-	apiKey := config.GetString("apiKey")
+	finnClient := gqs.GetFinnClient()
 
-	// request := req.(*GetQuoteRequest)
-	finnhubClient := finnhub.NewAPIClient(finnhub.NewConfiguration()).DefaultApi
-	auth := context.WithValue(context.Background(), finnhub.ContextAPIKey, finnhub.APIKey{
-		Key: apiKey,
-	})
-	quote, _, err := finnhubClient.Quote(auth, "AAPL")
+	quote, _, err := finnClient.Quote(ctx, "AAPL")
 
 	if err != nil {
 		return Response{}, err

@@ -3,12 +3,14 @@ package conf
 import (
 	"fmt"
 
+	finnhub "github.com/Finnhub-Stock-API/finnhub-go"
 	"github.com/spf13/viper"
 )
 
 //InternalConfig For Storing Items across app
 type InternalConfig struct {
-	v *viper.Viper
+	v             *viper.Viper
+	finnhubClient *finnhub.DefaultApiService
 }
 
 //GetString  returns value of desired key
@@ -19,6 +21,16 @@ func (i *InternalConfig) GetString(key string) string {
 //GetConfig for Viper
 func (i *InternalConfig) GetConfig() *viper.Viper {
 	return i.v
+}
+
+//GetFinnClient Returns Client for use
+func (i *InternalConfig) GetFinnClient() *finnhub.DefaultApiService {
+	return i.finnhubClient
+}
+
+//SetFinnClient Init finnhub client for all requests
+func (i *InternalConfig) SetFinnClient(fn *finnhub.DefaultApiService) {
+	i.finnhubClient = fn
 }
 
 //PrintValues Util to log all Vipers values

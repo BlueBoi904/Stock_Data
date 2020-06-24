@@ -35,8 +35,6 @@ func GenerateHandlers(ctx context.Context, services []ServiceEndpoint, config *c
 		GenerateRoutes(ctx, r, se.Service, se.Endpoint, config, options, logger)
 	}
 
-	r.HandleFunc("/", homepage)
-
 	return r
 }
 

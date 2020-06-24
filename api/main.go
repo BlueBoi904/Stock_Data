@@ -36,6 +36,10 @@ func handleRequests() {
 			Endpoint: new(services.GetQuoteRequest),
 			Service:  new(services.GetQuoteService),
 		},
+		{
+			Endpoint: new(services.GetNewsRequest),
+			Service: new(services.GetNewsService),
+		},
 	}
 
 	var (

@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/go-kit/kit/log"
+	"github.com/spf13/viper"
 )
 
 type Loggable interface {
@@ -53,6 +54,10 @@ func (lm loggingMiddleware) Execute(ctx context.Context, req interface{}) (r int
 	}(time.Now())
 
 	return lm.next.Execute(ctx, req)
+}
+
+func (mw loggingMiddleware) GetConfig() *viper.Viper {
+	return mw.next.GetConfig()
 }
 
 func (lm loggingMiddleware) Log() string {

@@ -43,6 +43,10 @@ func GenerateRoutes(ctx context.Context, r *mux.Router, service Service, endpoin
 	var decoder func(context.Context, *http.Request) (interface{}, error)
 	decoder = GenerateDecodeRequestFunc(endpoint)
 
+	if v, ok := service.(ServiceConfigurable); ok {
+		v.SetConfig(config.GetConfig())
+	}
+
 	ws := ServiceLogging(service, logger)
 
 	r.Methods(

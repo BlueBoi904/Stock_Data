@@ -8,37 +8,37 @@ import (
 	"github.com/Stock_Data/api/conf"
 )
 
-type GetQuoteRequest struct {
+type GetNewsRequest struct {
 	Ticker string `request:"query" json:"ticker" log:"true"`
 }
 
-func (gqr GetQuoteRequest) Info() commons.EndpointInfo {
+func (gqr GetNewsRequest) Info() commons.EndpointInfo {
 	return commons.EndpointInfo{
-		Path:         "Quote",
+		Path:         "News",
 		Method:       "GET",
-		RelativePath: "/quote",
+		RelativePath: "/news",
 	}
 }
 
-type GetQuoteService struct {
+type GetNewsService struct {
 	commons.BaseService
 }
 
 type Response struct {
-	Message string        `json:"message"`
-	Quote   finnhub.Quote `json:"quote"`
+	Message string       `json:"message"`
+	News    finnhub.News `json:"news"`
 }
 
-func (gqs GetQuoteService) Execute(ctx context.Context, req interface{}) (interface{}, error) {
+func (gqs GetNewsService) Execute(ctx context.Context, req interface{}) (interface{}, error) {
 	config := conf.Initialize("./conf")
 	apiKey := config.GetString("apiKey")
 
-	request := req.(*GetQuoteRequest)
+	request := req.(*GetNewsRequest)
 	finnhubClient := finnhub.NewAPIClient(finnhub.NewConfiguration()).DefaultApi
 	auth := context.WithValue(context.Background(), finnhub.ContextAPIKey, finnhub.APIKey{
 		Key: apiKey,
 	})
-	quote, _, err := finnhubClient.Quote(auth, request.Ticker)
+	news, _, err := finnhubClient.CompanyNews(auth, request.Ticker, "2020-05-01", "2020-05-01")
 
 	if err != nil {
 		return Response{}, err
@@ -46,10 +46,10 @@ func (gqs GetQuoteService) Execute(ctx context.Context, req interface{}) (interf
 
 	return Response{
 		Message: "Success",
-		Quote:   quote,
+		News:    news,
 	}, nil
 }
 
-func (gqs GetQuoteService) Log() string {
+func (gqs GetNewsService) Log() string {
 	return "Get Quote Service"
 }

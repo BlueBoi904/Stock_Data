@@ -1,5 +1,7 @@
 package commons
 
+import "context"
+
 //ServiceEndpoint Base end point for handler
 type ServiceEndpoint struct {
 	Endpoint Endpoint
@@ -8,7 +10,9 @@ type ServiceEndpoint struct {
 
 //EndpointInfo Endpoint Data
 type EndpointInfo struct {
-	Path string
+	Path         string
+	Method       string
+	RelativePath string
 }
 
 //Endpoint Interface that extends to return info
@@ -18,5 +22,6 @@ type Endpoint interface {
 
 //Service Base for the upcoming servce
 type Service interface {
+	Execute(ctx context.Context, req interface{}) (interface{}, error)
 	Log() string
 }

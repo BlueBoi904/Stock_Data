@@ -28,6 +28,7 @@ type GetQuoteReponse struct {
 	Quote   finnhub.Quote `json:"quote"`
 }
 
+//Execute Comment
 func (gqs GetQuoteService) Execute(ctx context.Context, req interface{}) (interface{}, error) {
 	finnClient := gqs.GetFinnClient()
 

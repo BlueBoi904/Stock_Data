@@ -18,10 +18,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func homepage(w http.ResponseWriter, r *http.Request) {
-	_, _ = fmt.Fprintf(w, "Homepage endpoint hit!")
-}
-
 func genericEncode(ctx context.Context, w http.ResponseWriter, response interface{}) error {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	return json.NewEncoder(w).Encode(response)

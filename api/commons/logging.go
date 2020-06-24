@@ -16,8 +16,7 @@ type basicLog struct {
 	Value interface{}
 }
 
-type Loggables map[string]Loggable
-
+//Middleware Defines a middleware service
 type Middleware func(Service) Service
 
 //ServiceLogging I think this works too

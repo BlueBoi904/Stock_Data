@@ -23,7 +23,7 @@ type GetNewsService struct {
 	commons.BaseService
 }
 
-type GetNewResponse struct {
+type GetNewsResponse struct {
 	Message string         `json:"message"`
 	News    []finnhub.News `json:"news"`
 }
@@ -35,10 +35,10 @@ func (gqs GetNewsService) Execute(ctx context.Context, req interface{}) (interfa
 	news, _, err := finnClient.CompanyNews(ctx, request.Ticker, "2020-05-01", "2020-05-01")
 
 	if err != nil {
-		return GetNewResponse{}, err
+		return GetNewsResponse{}, err
 	}
 
-	return GetNewResponse{
+	return GetNewsResponse{
 		Message: "Success",
 		News:    news,
 	}, nil

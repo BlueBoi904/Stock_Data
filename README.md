@@ -4,7 +4,7 @@ Custom API and Client built with GO and Typescript
 
 ## Description
 
-Our RESTful API is designed to consume realtime stock data using websockets.
+Our RESTful API is designed to allow for consumtion of realtime stock data using websockets.
 
 ### Installing and Executing
 

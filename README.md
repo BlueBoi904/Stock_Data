@@ -42,4 +42,4 @@ Cliff Mirschel - https://github.com/BlueBoi904
 
 Inspiration, code snippets, etc.
 
-- [Finnhub]https://github.com/Finnhub-Stock-API/finnhub-go
+- [Finnhub] https://github.com/Finnhub-Stock-API/finnhub-go

@@ -29,13 +29,25 @@ type GetNewsResponse struct {
 }
 
 func (gqs GetNewsService) Execute(ctx context.Context, req interface{}) (interface{}, error) {
+	// If a ticker is specified, return news for that stock. Otherwise, news on overall market
 
 	request := req.(*GetNewsRequest)
 	finnClient := gqs.GetFinnClient()
-	news, _, err := finnClient.CompanyNews(ctx, request.Ticker, "2020-05-01", "2020-05-01")
+	var news []finnhub.News
 
-	if err != nil {
-		return GetNewsResponse{}, err
+	if request.Ticker == "" {
+		generalNews, _, err := finnClient.GeneralNews(ctx, "general", nil)
+
+		if err != nil {
+			return GetNewsResponse{}, err
+		}
+		news = generalNews
+	} else {
+		companyNews, _, err := finnClient.CompanyNews(ctx, request.Ticker, "2020-05-01", "2020-05-01")
+		if err != nil {
+			return GetNewsResponse{}, err
+		}
+		news = companyNews
 	}
 
 	return GetNewsResponse{

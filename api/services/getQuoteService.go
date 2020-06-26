@@ -51,10 +51,11 @@ func (gqs GetQuoteService) Execute(ctx context.Context, req interface{}) (interf
 	s := rand.NewSource(time.Now().Unix())
 	r := rand.New(s) // initialize local pseudorandom generator
 	var randomInt = r.Intn(len(stockSymbols))
-	randomStock := stockSymbols[randomInt].Symbol
-	fmt.Printf("%+v\n", randomStock)
+	randomStock := stockSymbols[randomInt]
+	fmt.Printf("%+v\n", randomStock.Symbol)
+
 	if request.Ticker == "" {
-		ticker = randomStock
+		ticker = randomStock.Symbol
 	} else {
 		ticker = request.Ticker
 	}

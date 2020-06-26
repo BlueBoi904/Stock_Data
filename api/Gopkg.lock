@@ -69,6 +69,14 @@
   version = "v1.7.4"
 
 [[projects]]
+  digest = "1:6d29f02f0f01c627c2be40fb7347669a9ff2aa215cb97747294c1d13ffa74bdd"
+  name = "github.com/gorilla/websocket"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "b65e62901fc1c0d968042419e74789f6af455eb9"
+  version = "v1.4.2"
+
+[[projects]]
   digest = "1:c0d19ab64b32ce9fe5cf4ddceba78d5bc9807f0016db6b1183599da3dcc24d10"
   name = "github.com/hashicorp/hcl"
   packages = [
@@ -302,6 +310,7 @@
     "github.com/go-kit/kit/log",
     "github.com/go-kit/kit/transport/http",
     "github.com/gorilla/mux",
+    "github.com/gorilla/websocket",
     "github.com/rs/cors",
     "github.com/spf13/viper",
     "github.com/totalwinelabs/go-common/src/corshdr",

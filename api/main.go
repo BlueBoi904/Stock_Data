@@ -48,16 +48,24 @@ func handleRequests() {
 		logger = log.NewJSONLogger(log.NewSyncWriter(os.Stderr))
 	}
 
-	h := commons.GenerateHandlers(auth, handlers, config, logger)
+	hub := commons.NewHub()
+
+	go hub.Run()
+
+	h := commons.GenerateHandlers(auth, handlers, config, logger, hub)
+
 	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"},
 		AllowOriginFunc:  corshdr.AllowOriginFunc,
 		AllowCredentials: true,
 		AllowedHeaders:   []string{"Content-Type"},
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
 	})
+
 	h = c.Handler(h)
 
 	errs := make(chan error)
+
 	go func() {
 		c := make(chan os.Signal)
 		signal.Notify(c, syscall.SIGINT, syscall.SIGTERM)

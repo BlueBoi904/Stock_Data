@@ -24,7 +24,7 @@ func genericEncode(ctx context.Context, w http.ResponseWriter, response interfac
 }
 
 //GenerateHandlers Returns final handler for all service requests
-func GenerateHandlers(ctx context.Context, services []ServiceEndpoint, config *conf.InternalConfig, logger log.Logger) http.Handler {
+func GenerateHandlers(ctx context.Context, services []ServiceEndpoint, config *conf.InternalConfig, logger log.Logger, hub *Hub) http.Handler {
 	r := mux.NewRouter()
 
 	options := []gokithttp.ServerOption{
@@ -35,6 +35,9 @@ func GenerateHandlers(ctx context.Context, services []ServiceEndpoint, config *c
 		GenerateRoutes(ctx, r, se.Service, se.Endpoint, config, options, logger)
 	}
 
+	r.HandleFunc("/subscribe", func(w http.ResponseWriter, r *http.Request) {
+		ServeWs(hub, w, r)
+	})
 	return r
 }
 

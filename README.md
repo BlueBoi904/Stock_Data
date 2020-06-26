@@ -1,39 +1,30 @@
 # Project Title
 
-Simple overview of use/purpose.
+Custom API and Client built with GO and Typescript
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+Our RESTful API is designed to consume realtime stock data using websockets.
 
-## Getting Started
+### Installing and Executing
 
-### Dependencies
-
-- Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-- ex. Windows 10
-
-### Installing
-
-- How/where to download your program
-- Any modifications needed to be made to files/folders
-
-### Executing program
-
-- How to run the program
-- Step-by-step bullets
+- To run our api
 
 ```
-code blocks for commands
+  1. cd api
+  2. dep ensure
+  3. go run main.go
+```
+
+- To run the client
+
+```
+  1. cd client
+  2. yarn install
+  3. yarn start
 ```
 
 ## Help
-
-Any advise for common problems or issues.
-
-```
-command to run if program contains helper info
-```
 
 ## Authors
 

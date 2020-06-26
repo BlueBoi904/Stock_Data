@@ -1,4 +1,4 @@
-# Project Title
+# Stock Data API
 
 Custom API and Client built with GO and Typescript
 
@@ -12,7 +12,9 @@ Our RESTful API is designed to consume realtime stock data using websockets.
 
 ```
   1. cd api
+
   2. dep ensure
+
   3. go run main.go
 ```
 
@@ -20,7 +22,9 @@ Our RESTful API is designed to consume realtime stock data using websockets.
 
 ```
   1. cd client
+
   2. yarn install
+
   3. yarn start
 ```
 

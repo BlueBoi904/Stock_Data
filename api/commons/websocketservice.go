@@ -22,7 +22,7 @@ const (
 	pingPeriod = (pongWait * 9) / 10
 
 	// Maximum message size allowed from peer.
-	maxMessageSize = 512
+	maxMessageSize = 1024
 )
 
 var upgrader = websocket.Upgrader{
@@ -37,7 +37,7 @@ var upgrader = websocket.Upgrader{
 type Client struct {
 	hub  *Hub
 	conn *websocket.Conn
-	send chan ClientMessage
+	send chan interface{}
 }
 
 type ClientReader interface {
@@ -157,7 +157,7 @@ func ServeWs(hub *Hub, w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 		return
 	}
-	client := &Client{hub: hub, conn: conn, send: make(chan ClientMessage)}
+	client := &Client{hub: hub, conn: conn, send: make(chan interface{})}
 	client.hub.register <- client
 
 	// Allow collection of memory referenced by the caller by doing all work in
@@ -172,14 +172,14 @@ type ClientMessage struct {
 
 type Hub struct {
 	clients    map[*Client]bool
-	broadcast  chan ClientMessage
+	broadcast  chan interface{}
 	register   chan *Client
 	unregister chan *Client
 }
 
 func NewHub() *Hub {
 	return &Hub{
-		broadcast:  make(chan ClientMessage),
+		broadcast:  make(chan interface{}),
 		register:   make(chan *Client),
 		unregister: make(chan *Client),
 		clients:    make(map[*Client]bool),
@@ -203,12 +203,11 @@ func (h *Hub) Run() {
 	}
 }
 
-func (h *Hub) SendMessage() {
-	fmt.Println("Testing Send")
+func (h *Hub) SendMessage(v interface{}) {
 	for client := range h.clients {
 		select {
 		// Need to make sending messages more generic at some point for different endpoints
-		case client.send <- ClientMessage{Type: "Got New Data"}:
+		case client.send <- v:
 		default:
 			close(client.send)
 			delete(h.clients, client)

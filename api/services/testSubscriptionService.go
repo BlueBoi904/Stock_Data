@@ -29,7 +29,7 @@ func (tss TestSubService) Execute(ctx context.Context, req interface{}) (interfa
 
 	hub := tss.GetEmitSocket()
 
-	hub.SendMessage()
+	hub.SendMessage(TestSubResponse{Message: "Unique"})
 
 	return TestSubResponse{Message: "Success"}, nil
 }

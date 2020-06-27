@@ -38,6 +38,7 @@ func GenerateHandlers(ctx context.Context, services []ServiceEndpoint, config *c
 	r.HandleFunc("/subscribe", func(w http.ResponseWriter, r *http.Request) {
 		ServeWs(hub, w, r)
 	})
+
 	return r
 }
 

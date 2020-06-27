@@ -15,7 +15,6 @@ import (
 	"github.com/Stock_Data/api/services"
 	"github.com/go-kit/kit/log"
 	"github.com/rs/cors"
-	"github.com/totalwinelabs/go-common/src/corshdr"
 )
 
 func handleRequests() {
@@ -64,7 +63,7 @@ func handleRequests() {
 
 	c := cors.New(cors.Options{
 		AllowedOrigins:   []string{"*"},
-		AllowOriginFunc:  corshdr.AllowOriginFunc,
+		AllowOriginFunc:  func(origin string) bool { return true },
 		AllowCredentials: true,
 		AllowedHeaders:   []string{"Content-Type"},
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},

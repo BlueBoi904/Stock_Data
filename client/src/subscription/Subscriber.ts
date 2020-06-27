@@ -6,8 +6,8 @@ type Config = {
 
 class Subscriber {
     private static clients = new WeakMap<Config,Subscriber>();
-    public readonly stream: Stream<string>;
-    private listener: Listener<string> | null = null;
+    public readonly stream: Stream<any>;
+    private listener: Listener<any> | null = null;
     private retryTimeout:  null | NodeJS.Timeout = null;
     private socket: Promise<WebSocket> | null = null;
 
@@ -64,7 +64,7 @@ class Subscriber {
         socket.addEventListener("open", () => {
           // Let the listener know our socket connected.
           if (this.listener !== null) {
-            this.listener.next("connected");
+            this.listener.next({type: "connected"});
           }
         });
     
@@ -75,7 +75,6 @@ class Subscriber {
             // Parse the message from our server as JSON. Assume that our server
             // gave us a correctly formatted subscription message.
             const rawMessage = event.data as unknown;
-            console.log(rawMessage)
             if (typeof rawMessage !== "string") {
               throw new Error("Expected string.");
             }
@@ -115,7 +114,7 @@ class Subscriber {
           // Let the listener know our socket disconnected. If the listener waits
           // long enough the socket will re-connect.
           if (this.listener !== null) {
-            this.listener.next("disconnected");
+            this.listener.next({type: "disconnected"});
           }
     
           // If the WebSocket closes unexpectedly then after some delay we try to
@@ -136,7 +135,7 @@ class Subscriber {
 
       private handleError(error: unknown) {
         if (this.listener !== null) {
-          this.listener.error(error);
+          this.listener.error({type: "error", error});
         } else {
           console.error(error); // eslint-disable-line no-console
         }

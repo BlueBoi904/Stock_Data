@@ -30,11 +30,13 @@ type Service interface {
 	Execute(ctx context.Context, req interface{}) (interface{}, error)
 	GetConfig() *viper.Viper
 	GetFinnClient() *finnhub.DefaultApiService
+	GetEmitSocket() *Hub
 }
 
 type BaseService struct {
 	config        *viper.Viper
 	finnhubClient *finnhub.DefaultApiService
+	hub           *Hub
 }
 type ServiceConfigurable interface {
 	SetConfig(cfg *viper.Viper)
@@ -42,6 +44,10 @@ type ServiceConfigurable interface {
 
 type FinnServiceConfigurable interface {
 	SetFinnClient(cfg *finnhub.DefaultApiService)
+}
+
+type WebsocketEmitterConfigurable interface {
+	SetEmitSocket(hub *Hub)
 }
 
 func (bs *BaseService) SetConfig(cfg *viper.Viper) {
@@ -62,4 +68,12 @@ func (bs BaseService) GetFinnClient() *finnhub.DefaultApiService {
 
 func (bs *BaseService) SetFinnClient(cfg *finnhub.DefaultApiService) {
 	bs.finnhubClient = cfg
+}
+
+func (bs *BaseService) SetEmitSocket(hub *Hub) {
+	bs.hub = hub
+}
+
+func (bs BaseService) GetEmitSocket() *Hub {
+	return bs.hub
 }

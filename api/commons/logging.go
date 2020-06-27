@@ -68,3 +68,7 @@ func (mw loggingMiddleware) GetFinnClient() *finnhub.DefaultApiService {
 func (lm loggingMiddleware) Log() string {
 	return "Logging Middle Ware"
 }
+
+func (lm loggingMiddleware) GetEmitSocket() *Hub {
+	return lm.next.GetEmitSocket()
+}

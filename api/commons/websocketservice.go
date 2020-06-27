@@ -1,11 +1,11 @@
 package commons
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/gorilla/websocket"
@@ -25,11 +25,6 @@ const (
 	maxMessageSize = 512
 )
 
-var (
-	newline = []byte{'\n'}
-	space   = []byte{' '}
-)
-
 var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
@@ -40,13 +35,53 @@ var upgrader = websocket.Upgrader{
 
 // Client is a middleman between the websocket connection and the hub.
 type Client struct {
-	hub *Hub
-
-	// The websocket connection.
+	hub  *Hub
 	conn *websocket.Conn
+	send chan ClientMessage
+}
 
-	// Buffered channel of outbound messages.
-	send chan []byte
+type ClientReader interface {
+	ReadMessageJSON(v interface{}) (interface{}, error)
+}
+
+func (c *Client) ReadMessageJSON(v interface{}) error {
+	_, msg, err := c.conn.ReadMessage()
+	if err != nil {
+		return err
+	}
+
+	data, err := strconv.Unquote(string(msg))
+	if err != nil {
+		return err
+	}
+
+	err = json.Unmarshal([]byte(data), &v)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (c *Client) WriteMessageJSON(message interface{}) error {
+	w, err := c.conn.NextWriter(websocket.TextMessage)
+	if err != nil {
+		return err
+	}
+
+	json.NewEncoder(w).Encode(message)
+
+	// Add queued chat messages to the current websocket message.
+	n := len(c.send)
+	for i := 0; i < n; i++ {
+		err = json.NewEncoder(w).Encode(<-c.send)
+		return err
+	}
+
+	if err := w.Close(); err != nil {
+		return err
+	}
+	return nil
 }
 
 // readPump pumps messages from the websocket connection to the hub.
@@ -64,16 +99,15 @@ func (c *Client) readPump() {
 	c.conn.SetPongHandler(func(string) error { c.conn.SetReadDeadline(time.Now().Add(pongWait)); return nil })
 
 	for {
-		_, message, err := c.conn.ReadMessage()
+		exp := ClientMessage{}
+		err := c.ReadMessageJSON(&exp)
 		if err != nil {
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
 				log.Printf("error: %v", err)
 			}
 			break
 		}
-
-		message = bytes.TrimSpace(bytes.Replace(message, newline, space, -1))
-		c.hub.broadcast <- message
+		c.hub.broadcast <- exp
 	}
 }
 
@@ -97,21 +131,8 @@ func (c *Client) writePump() {
 				c.conn.WriteMessage(websocket.CloseMessage, []byte{})
 				return
 			}
-
-			w, err := c.conn.NextWriter(websocket.TextMessage)
+			err := c.WriteMessageJSON(message)
 			if err != nil {
-				return
-			}
-			w.Write(message)
-
-			// Add queued chat messages to the current websocket message.
-			n := len(c.send)
-			for i := 0; i < n; i++ {
-				w.Write(newline)
-				w.Write(<-c.send)
-			}
-
-			if err := w.Close(); err != nil {
 				return
 			}
 		case <-ticker.C:
@@ -130,7 +151,7 @@ func ServeWs(hub *Hub, w http.ResponseWriter, r *http.Request) {
 		log.Println(err)
 		return
 	}
-	client := &Client{hub: hub, conn: conn, send: make(chan []byte, 256)}
+	client := &Client{hub: hub, conn: conn, send: make(chan ClientMessage)}
 	client.hub.register <- client
 
 	// Allow collection of memory referenced by the caller by doing all work in
@@ -144,22 +165,15 @@ type ClientMessage struct {
 }
 
 type Hub struct {
-	// Registered clients.
-	clients map[*Client]bool
-
-	// Inbound messages from the clients.
-	broadcast chan []byte
-
-	// Register requests from the clients.
-	register chan *Client
-
-	// Unregister requests from clients.
+	clients    map[*Client]bool
+	broadcast  chan ClientMessage
+	register   chan *Client
 	unregister chan *Client
 }
 
 func NewHub() *Hub {
 	return &Hub{
-		broadcast:  make(chan []byte),
+		broadcast:  make(chan ClientMessage),
 		register:   make(chan *Client),
 		unregister: make(chan *Client),
 		clients:    make(map[*Client]bool),
@@ -177,19 +191,19 @@ func (h *Hub) Run() {
 				close(client.send)
 			}
 		case message := <-h.broadcast:
-			isValid := json.Valid(message)
-			if isValid {
-				fmt.Println("Valid JSON")
-			}
+			fmt.Println(message)
+		}
+	}
+}
 
-			for client := range h.clients {
-				select {
-				case client.send <- message:
-				default:
-					close(client.send)
-					delete(h.clients, client)
-				}
-			}
+func (h *Hub) SendMessage() {
+	fmt.Println("Testing Send")
+	for client := range h.clients {
+		select {
+		case client.send <- ClientMessage{Type: "Got New Data"}:
+		default:
+			close(client.send)
+			delete(h.clients, client)
 		}
 	}
 }

@@ -38,7 +38,11 @@ func handleRequests() {
 		},
 		{
 			Endpoint: new(services.GetNewsRequest),
-			Service: new(services.GetNewsService),
+			Service:  new(services.GetNewsService),
+		},
+		{
+			Endpoint: new(services.TestSubRequest),
+			Service:  new(services.TestSubService),
 		},
 	}
 

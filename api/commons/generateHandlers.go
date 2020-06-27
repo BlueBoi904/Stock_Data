@@ -32,7 +32,7 @@ func GenerateHandlers(ctx context.Context, services []ServiceEndpoint, config *c
 	}
 
 	for _, se := range services {
-		GenerateRoutes(ctx, r, se.Service, se.Endpoint, config, options, logger)
+		GenerateRoutes(ctx, r, se.Service, se.Endpoint, config, options, logger, hub)
 	}
 
 	r.HandleFunc("/subscribe", func(w http.ResponseWriter, r *http.Request) {
@@ -42,7 +42,7 @@ func GenerateHandlers(ctx context.Context, services []ServiceEndpoint, config *c
 }
 
 //GenerateRoutes Creates and Attaches handlers and routes to the endpoints
-func GenerateRoutes(ctx context.Context, r *mux.Router, service Service, endpoint Endpoint, config *conf.InternalConfig, options []gokithttp.ServerOption, logger log.Logger) {
+func GenerateRoutes(ctx context.Context, r *mux.Router, service Service, endpoint Endpoint, config *conf.InternalConfig, options []gokithttp.ServerOption, logger log.Logger, hub *Hub) {
 	var decoder func(context.Context, *http.Request) (interface{}, error)
 	decoder = GenerateDecodeRequestFunc(endpoint)
 
@@ -52,6 +52,10 @@ func GenerateRoutes(ctx context.Context, r *mux.Router, service Service, endpoin
 
 	if v, ok := service.(FinnServiceConfigurable); ok {
 		v.SetFinnClient(config.GetFinnClient())
+	}
+
+	if v, ok := service.(WebsocketEmitterConfigurable); ok {
+		v.SetEmitSocket(hub)
 	}
 
 	ws := ServiceLogging(service, logger)

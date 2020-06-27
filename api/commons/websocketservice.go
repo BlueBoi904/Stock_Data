@@ -191,6 +191,7 @@ func (h *Hub) Run() {
 				close(client.send)
 			}
 		case message := <-h.broadcast:
+			//Here we would react from a client request if we wanted
 			fmt.Println(message)
 		}
 	}
@@ -200,6 +201,7 @@ func (h *Hub) SendMessage() {
 	fmt.Println("Testing Send")
 	for client := range h.clients {
 		select {
+		// Need to make sending messages more generic at some point for different endpoints
 		case client.send <- ClientMessage{Type: "Got New Data"}:
 		default:
 			close(client.send)

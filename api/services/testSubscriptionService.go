@@ -22,14 +22,14 @@ type TestSubService struct {
 }
 
 type TestSubResponse struct {
-	Message string `json:"message"`
+	Type string `json:"type"`
 }
 
 func (tss TestSubService) Execute(ctx context.Context, req interface{}) (interface{}, error) {
 
 	hub := tss.GetEmitSocket()
 
-	hub.SendMessage(TestSubResponse{Message: "Unique"})
+	hub.SendMessage(TestSubResponse{Type: "test"}, "test")
 
-	return TestSubResponse{Message: "Success"}, nil
+	return TestSubResponse{Type: "test"}, nil
 }

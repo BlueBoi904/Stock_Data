@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"strconv"
 	"time"
 
 	"github.com/gorilla/websocket"
@@ -50,12 +49,7 @@ func (c *Client) ReadMessageJSON(v interface{}) error {
 		return err
 	}
 
-	data, err := strconv.Unquote(string(msg))
-	if err != nil {
-		return err
-	}
-
-	err = json.Unmarshal([]byte(data), &v)
+	err = json.Unmarshal(msg, &v)
 	if err != nil {
 		return err
 	}
@@ -98,21 +92,20 @@ func (c *Client) readPump() {
 	c.conn.SetReadDeadline(time.Now().Add(pongWait))
 	c.conn.SetPongHandler(func(string) error {
 		c.conn.SetReadDeadline(time.Now().Add(pongWait))
-		if err := c.conn.WriteMessage(websocket.PingMessage, []byte("ping")); err != nil {
-			return err
-		}
 		return nil
 	})
 
 	for {
-		exp := ClientMessage{}
+		exp := SubscribeMessage{}
 		err := c.ReadMessageJSON(&exp)
 		if err != nil {
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
 				log.Printf("error: %v", err)
 			}
+			fmt.Println(err)
 			break
 		}
+		exp.Client = c
 		c.hub.broadcast <- exp
 	}
 }
@@ -170,11 +163,18 @@ type ClientMessage struct {
 	Type string `json:"id"`
 }
 
+type SubscribeMessage struct {
+	Type   string `json:"type"`
+	Topic  string `json:"topic"`
+	Client *Client
+}
+
 type Hub struct {
 	clients    map[*Client]bool
 	broadcast  chan interface{}
 	register   chan *Client
 	unregister chan *Client
+	topicMap   map[string][]*Client
 }
 
 func NewHub() *Hub {
@@ -183,6 +183,7 @@ func NewHub() *Hub {
 		register:   make(chan *Client),
 		unregister: make(chan *Client),
 		clients:    make(map[*Client]bool),
+		topicMap:   make(map[string][]*Client),
 	}
 }
 
@@ -197,20 +198,47 @@ func (h *Hub) Run() {
 				close(client.send)
 			}
 		case message := <-h.broadcast:
-			//Here we would react from a client request if we wanted
-			fmt.Println(message)
+			if m, ok := message.(SubscribeMessage); ok {
+				if _, ok := h.topicMap[m.Topic]; ok {
+					hasSubscribed := false
+					for _, client := range h.topicMap[m.Topic] {
+						if client == m.Client {
+							hasSubscribed = true
+						}
+					}
+					if !hasSubscribed {
+						h.topicMap[m.Topic] = append(h.topicMap[m.Topic], m.Client)
+					}
+					break
+				}
+				h.topicMap[m.Topic] = make([]*Client, 1)
+				h.topicMap[m.Topic][0] = m.Client
+			}
 		}
 	}
 }
 
-func (h *Hub) SendMessage(v interface{}) {
-	for client := range h.clients {
+func (h *Hub) SendMessage(v interface{}, topicName string) {
+	defer func() {
+		fmt.Println(h.topicMap)
+	}()
+	for i, client := range h.topicMap[topicName] {
+		_, ok := h.clients[client]
+		if !ok {
+			h.topicMap[topicName] = remove(h.topicMap[topicName], i)
+			continue
+		}
 		select {
-		// Need to make sending messages more generic at some point for different endpoints
 		case client.send <- v:
 		default:
 			close(client.send)
-			delete(h.clients, client)
+			h.topicMap[topicName] = remove(h.topicMap[topicName], i)
 		}
 	}
+}
+
+func remove(s []*Client, i int) []*Client {
+	s[i] = s[len(s)-1]
+	// We do not need to put s[i] at the end, as it will be discarded anyway
+	return s[:len(s)-1]
 }

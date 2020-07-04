@@ -43,6 +43,10 @@ func handleRequests() {
 			Endpoint: new(services.TestSubRequest),
 			Service:  new(services.TestSubService),
 		},
+		{
+			Endpoint: new(services.TestOtherRequest),
+			Service:  new(services.TestOtherService),
+		},
 	}
 
 	var (

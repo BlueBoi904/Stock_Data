@@ -19,6 +19,16 @@
     "typescript": "~3.7.2",
     "xstream": "^11.12.0"
   },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.tsx": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
   "scripts": {
     "start": "react-scripts start",
     "lint": "eslint . --ext .ts,.tsx --fix",
@@ -44,6 +54,8 @@
   "devDependencies": {
     "@react-native-community/eslint-config": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^3.5.0",
-    "@typescript-eslint/parser": "^3.5.0"
+    "@typescript-eslint/parser": "^3.5.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11"
   }
 }

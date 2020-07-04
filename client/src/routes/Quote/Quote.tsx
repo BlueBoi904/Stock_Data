@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-function Quote() {
+function Quote(): JSX.Element {
   async function getQuote() {
     try {
-      let response = await fetch("http://localhost:8080/quote");
-      let data = await response.json();
-      console.log("data", data);
+      const response = await fetch('http://localhost:8080/quote');
+      const data = await response.json();
+      console.log('data', data);
     } catch (error) {
       console.log(error);
     }

@@ -9,7 +9,7 @@ class Subscriber {
     public readonly stream: Stream<any>;
     private listener: Listener<any> | null = null;
     private retryTimeout:  null | NodeJS.Timeout = null;
-    private socket: Promise<WebSocket> | null = null;
+    private  socket: Promise<WebSocket> | null = null;
 
     public static get(config: Config): Subscriber {
         let client = this.clients.get(config);
@@ -81,8 +81,7 @@ class Subscriber {
             const message: string = JSON.parse(rawMessage);
     
             switch (message) {
-              // If our message was an error then convert it to an `APIError` and
-              // throw instead of passing the error on to our listener.
+
               case "error": {
                 throw new Error("Test");
               }
@@ -145,7 +144,7 @@ class Subscriber {
        * Publishes a message to our WebSocket. If our WebSocket is not yet open then
        * we will wait until it opens to send the message.
        */
-      public publish(message: string) {
+      public publish(message: Message) {
         this.ensureSocket().then(socket => {
           if (socket.readyState === WebSocket.CONNECTING) {
             const handleOpen = () => {
@@ -162,6 +161,11 @@ class Subscriber {
     
 }
 
+
+type Message = {
+  type: string,
+  topic?: string 
+}
 
 export { Subscriber }
 /*

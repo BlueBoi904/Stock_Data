@@ -11,10 +11,12 @@ function News() {
     }
   }
 
-  return (<div>
-    <h1>News</h1>
-    <button onClick={getNews}>Get News</button>
-  </div>);
+  return (
+    <div>
+      <h1>News</h1>
+      <button onClick={getNews}>Get News</button>
+    </div>
+  );
 }
 
 export default News;

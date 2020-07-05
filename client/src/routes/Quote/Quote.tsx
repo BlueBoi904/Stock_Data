@@ -1,6 +1,8 @@
 import React from 'react';
+import { BaseQuoteTemplate } from './templates';
 
 function Quote(): JSX.Element {
+  /*
   async function getQuote() {
     try {
       const response = await fetch('http://localhost:8080/quote');
@@ -10,13 +12,9 @@ function Quote(): JSX.Element {
       console.log(error);
     }
   }
+  */
 
-  return (
-    <div>
-      <h1>Quote</h1>
-      <button onClick={getQuote}>Get Quote</button>
-    </div>
-  );
+  return <BaseQuoteTemplate />;
 }
 
 export default Quote;

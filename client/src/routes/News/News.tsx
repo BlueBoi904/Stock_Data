@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
-import { TextTitle, TextSubTitle } from '../../components/atoms';
+import React from 'react';
+import { BaseNewsLayout } from './templates';
 
-function News(): JSX.Element {
-  const [news, setNews] = useState();
+export function News(): JSX.Element {
+  return <BaseNewsLayout />;
+}
+
+// Put your stuff in a comment as this is going to be refactored
+
+/*
+const [news, setNews] = useState();
   async function getNews() {
     try {
       const response = await fetch('http://localhost:8080/news');
@@ -15,8 +21,9 @@ function News(): JSX.Element {
     }
   }
 
-  return (
-    <div>
+  function ShowRoute(){
+    return(
+      <div>
       <h1>News</h1>
       <button onClick={getNews}>Get News</button>
       {news &&
@@ -29,7 +36,6 @@ function News(): JSX.Element {
           );
         })}
     </div>
-  );
-}
-
-export default News;
+    )
+  }
+  */

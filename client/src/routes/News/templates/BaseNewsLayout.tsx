@@ -5,7 +5,7 @@ import { TextTitle } from '../../../components/atoms';
 function TempCheck() {
   function items() {
     const items: ReturnType<typeof TextTitle>[] = [];
-    for (let i = 0; i < 40; i++) {
+    for (let i = 50; i > 0; i--) {
       items.push(<TextTitle key={i}>{i}</TextTitle>);
     }
     return items;
@@ -13,7 +13,7 @@ function TempCheck() {
   return items();
 }
 
-export function BaseHomeLayout({}) {
+export function BaseNewsLayout({}) {
   return (
     <div>
       <Header />

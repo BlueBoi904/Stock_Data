@@ -1,8 +1,7 @@
 import React from 'react';
 import { BaseHomeLayout } from './templates';
+import { Route } from 'react-router-dom';
 
-function Home() {
-  return <BaseHomeLayout />;
+export function Home() {
+  return <Route path="/" component={BaseHomeLayout} exact />;
 }
-
-export default Home;

@@ -1,0 +1,1 @@
+export { BaseNewsLayout } from './BaseNewsLayout';

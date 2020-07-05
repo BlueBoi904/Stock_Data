@@ -1,0 +1,1 @@
+export { BaseQuoteTemplate } from './BaseQuoteTemplate';

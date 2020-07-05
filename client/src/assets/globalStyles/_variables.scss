@@ -1,5 +1,6 @@
 $font-size-title: 48px;
 $font-size-subtitle: 36px;
+$font-size-navbar: 24px;
 $font-size-body: 17px;
 
 $header-size: 60px;
@@ -10,8 +11,23 @@ $zindex-base: 1;
 
 
 $gray-0: hsl(0, 0%, 96%);
-$gray-1: hsl(0, 0%, 69%);
+$gray-1: hsl(0, 0%, 81%);
+$gray-2: hsl(0, 0%, 69%);
 
 
+$green-dark: #3B842F;
+$green-medium: #4BAA3B;
+$green-light: #64C553;
 
-$header-top-border: #1a73e8;
+$gray-d: #A6A6A6;
+$gray-l: #BFBFBF;
+
+$header-top-border: $green-medium;
+
+
+$max-screen-width: 1264px;
+
+
+@mixin flex {
+    display: flex;
+}

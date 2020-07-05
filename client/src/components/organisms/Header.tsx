@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavbarLink } from '../Atoms';
+import { NavbarLink } from '../atoms';
 import './styles/Header.scss';
 
 export function Header() {

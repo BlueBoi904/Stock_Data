@@ -23,6 +23,13 @@ body {
   src: local('MyFont'), url(./assets/fonts/Ubuntu-Bold.ttf) format('woff');
 }
 
+@font-face {
+  font-family: "Feather";
+  src: url("../src/assets/icons/Feather.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

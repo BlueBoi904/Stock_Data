@@ -19,6 +19,8 @@ $green-dark: #3B842F;
 $green-medium: #4BAA3B;
 $green-light: #64C553;
 
+$green-dark-fade: hsl(112, 47%, 65%);
+
 $gray-d: #A6A6A6;
 $gray-l: #BFBFBF;
 
@@ -26,6 +28,10 @@ $header-top-border: $green-medium;
 
 
 $max-screen-width: 1264px;
+
+$fontUR: "ubuntu-regular";
+$fontUB: "ubuntu-bold";
+$fontUI: "ubuntu-italic";
 
 
 @mixin flex {

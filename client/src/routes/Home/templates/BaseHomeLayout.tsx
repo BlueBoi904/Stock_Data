@@ -1,6 +1,6 @@
 import React from 'react';
 import { Header, Body } from '../../../components/organisms';
-import { TextTitle, Icon } from '../../../components/atoms';
+import { TextTitle } from '../../../components/atoms';
 
 function TempCheck() {
   function items() {
@@ -17,10 +17,7 @@ export function BaseHomeLayout({}) {
   return (
     <div>
       <Header />
-      <Body>
-        <Icon />
-        {TempCheck()}
-      </Body>
+      <Body>{TempCheck()}</Body>
     </div>
   );
 }

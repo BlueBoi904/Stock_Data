@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavbarLink } from '../atoms';
+import { SearchBar } from '../molecules';
 import './styles/Header.scss';
 
 export function Header() {
@@ -15,6 +16,7 @@ export function Header() {
             <NavbarLink title="Quote" path="/quote" />
           </li>
         </ol>
+        <SearchBar />
       </div>
     </div>
   );

@@ -1,14 +1,18 @@
 import React from 'react';
 import './styles/Text.scss';
 
-export function TextTitle({ children }: { children: string }) {
+export type TextComponents = {
+  children: string | number;
+};
+
+export function TextTitle({ children }: TextComponents) {
   return <h1 className="Title H1">{children}</h1>;
 }
 
-export function TextSubTitle({ children }: { children: string }) {
+export function TextSubTitle({ children }: TextComponents) {
   return <h2 className="Title H2">{children}</h2>;
 }
 
-export function TextBody({ children }: { children: string }) {
+export function TextBody({ children }: TextComponents) {
   return <div className="Title body">{children}</div>;
 }

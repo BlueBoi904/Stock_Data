@@ -1,0 +1,14 @@
+@import "../../../assets/globalStyles/variables.scss";
+
+.Header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: auto;
+    width: 100%;
+    height: $header-size;
+    z-index: $zindex-top;
+    background-color: white;
+    border-top: 3px solid #f48024;
+    box-shadow: 2px 2px black;
+}

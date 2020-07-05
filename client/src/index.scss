@@ -1,0 +1,28 @@
+@import "./assets/globalStyles/variables";
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@font-face {
+  font-family: 'ubuntu-regular';
+  src: local('MyFont'), url(./assets/fonts/Ubuntu-Regular.ttf) format('woff');
+}
+@font-face {
+  font-family: 'ubuntu-italic';
+  src: local('MyFont'), url(./assets/fonts/Ubuntu-Italic.ttf) format('woff');
+}
+@font-face {
+  font-family: 'ubuntu-bold';
+  src: local('MyFont'), url(./assets/fonts/Ubuntu-Bold.ttf) format('woff');
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

@@ -1,1 +1,1 @@
-export { TextTitle, TextSubTitle } from './Text';
+export { TextTitle, TextSubTitle, TextBody } from './Text';

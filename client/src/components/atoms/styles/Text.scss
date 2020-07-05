@@ -1,13 +1,21 @@
-$font-size-large: 55px;
-$font-size-medium: 32px;
+@import "../../../assets/globalStyles/variables.scss";
 
 .Title {
+    margin: 0px;
+
     &.H1  {
-        font-size: $font-size-large;
+        font-family: "ubuntu-regular";
+        font-size: $font-size-title;
     }
 
     &.H2 {
-        font-size: $font-size-medium;
+        font-family: "ubuntu-regular";
+        font-size: $font-size-subtitle;
+    }
+
+    &.body {
+        font-family: "ubuntu-regular";
+        font-size: $font-size-body;
     }
 }
 

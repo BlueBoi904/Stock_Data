@@ -1,13 +1,8 @@
 import React from 'react';
-import { TextTitle, TextSubTitle } from '../../components/atoms';
+import { BaseHomeLayout } from './templates';
 
 function Home() {
-  return (
-    <div>
-      <TextTitle>Testing</TextTitle>
-      <TextSubTitle>Another Component</TextSubTitle>
-    </div>
-  );
+  return <BaseHomeLayout />;
 }
 
 export default Home;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { Header, Body } from '../../../components/organisms';
-import { TextTitle } from '../../../components/atoms';
+import { Header, Body } from '../../../components/Organisms';
+import { TextTitle } from '../../../components/Atoms';
 
 function TempCheck() {
   function items() {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextTitle, TextSubTitle } from '../../components/atoms';
+import { TextTitle, TextSubTitle } from '../../components/Atoms';
 
 function Home() {
   return (

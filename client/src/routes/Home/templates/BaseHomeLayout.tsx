@@ -10,7 +10,7 @@ import { TextTitle } from '../../../components/atoms';
 function TempCheck(num: number) {
   function items() {
     const items: ReturnType<typeof TextTitle>[] = [];
-    for (let i = 0; i < num; i++) {
+    for (let i = 0; i <= num; i++) {
       items.push(<TextTitle key={i}>{i}</TextTitle>);
     }
     return items;
@@ -23,7 +23,7 @@ export function BaseHomeLayout({}) {
     <div>
       <Header />
       <Body>
-        <SideBar>{TempCheck(10)}</SideBar>
+        <SideBar>{TempCheck(25)}</SideBar>
         <MainContent>{TempCheck(50)}</MainContent>
       </Body>
     </div>

@@ -1,14 +1,13 @@
 import React from 'react';
 import { GlyphMap } from '../../assets/icons/GlyphMap';
+import './styles/Icon.scss';
 
-export function Icon() {
+export type IconName = keyof typeof GlyphMap;
+
+export function Icon({ name, size = 20 }: { name: IconName; size?: number }) {
   return (
-    <div style={styles.icon}>{String.fromCharCode(GlyphMap.activity)}</div>
+    <div style={{ fontSize: size }} className="Icon">
+      {String.fromCharCode(GlyphMap[name])}
+    </div>
   );
 }
-
-const styles = {
-  icon: {
-    fontFamily: 'Feather',
-  },
-};

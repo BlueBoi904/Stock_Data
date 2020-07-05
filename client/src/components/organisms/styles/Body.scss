@@ -2,6 +2,7 @@
 
 
 .Body {
+    @include flex;
     padding-top: $header-size;
     max-width: $max-screen-width;
     margin: 0 auto;

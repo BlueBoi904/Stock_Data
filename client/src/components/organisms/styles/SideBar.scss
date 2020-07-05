@@ -1,0 +1,13 @@
+@import "../../../assets/globalStyles/variables.scss";
+
+.SideBar {
+    width: 164px;
+    flex-shrink: 0;
+    .sticky {
+        position: sticky;
+        overflow-y: auto;
+        top: $header-size;
+        width: auto;
+        max-height: calc(100vh - $header-size);
+    }
+}

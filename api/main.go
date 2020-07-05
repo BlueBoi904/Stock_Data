@@ -47,6 +47,10 @@ func handleRequests() {
 			Endpoint: new(services.TestOtherRequest),
 			Service:  new(services.TestOtherService),
 		},
+		{
+			Endpoint: new(services.GetScrapedFinviz),
+			Service:  new(services.GetScrapedFinvizService),
+		},
 	}
 
 	var (

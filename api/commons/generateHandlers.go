@@ -65,7 +65,7 @@ func GenerateRoutes(ctx context.Context, r *mux.Router, service Service, endpoin
 		endpoint.Info().Method,
 	).Path(
 		endpoint.Info().RelativePath,
-	).Handler(gokithttp.NewServer(ctx, ws.Execute, decoder, genericEncode, options...))
+	).Handler(gokithttp.NewServer(ws.Execute, decoder, genericEncode, options...))
 }
 
 func GetHeaderValue(name string, r *http.Request) string {

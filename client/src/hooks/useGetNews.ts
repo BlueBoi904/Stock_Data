@@ -22,9 +22,13 @@ export function useGetNews(): NewsHookType {
 
   async function getNews(ticker: string) {
     try {
-      const response = await fetch(`http://localhost:8080/news/${ticker}`);
+      console.log(ticker);
+      const response = await fetch('http://localhost:8080/news/AAPL', {
+        mode: 'cors',
+      });
       const datum: { news: News[] } = await response.json();
       const { news } = datum;
+      console.log(datum);
       setData(news);
     } catch (error) {
       console.log(error);

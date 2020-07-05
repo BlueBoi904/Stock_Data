@@ -10,7 +10,7 @@ export function Header() {
         <NavbarLink title="Stock App" path="/" />
         <ol className="list-links">
           <li>
-            <NavbarLink title="Latest News" path="/news" />
+            <NavbarLink title="Latest News" path="/news/amd" />
           </li>
           <li>
             <NavbarLink title="Quote" path="/quote" />

@@ -2,6 +2,7 @@ package services
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/Finnhub-Stock-API/finnhub-go"
 	"github.com/Stock_Data/api/commons"
@@ -34,8 +35,9 @@ func (gqs GetNewsService) Execute(ctx context.Context, req interface{}) (interfa
 	request := req.(*GetNewsRequest)
 	finnClient := gqs.GetFinnClient()
 
-	news, _, err := finnClient.CompanyNews(ctx, request.Ticker, "2020-05-01", "2020-05-01")
+	news, _, err := finnClient.CompanyNews(ctx, request.Ticker, "2020-06-05", "2020-06-05")
 
+	fmt.Println(err)
 	if err != nil {
 		return GetNewsResponse{}, err
 	}

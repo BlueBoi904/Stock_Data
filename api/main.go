@@ -70,7 +70,7 @@ func handleRequests() {
 	h := commons.GenerateHandlers(auth, handlers, config, logger, hub)
 
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"*"},
+		AllowedOrigins:   []string{"*", "http://localhost:3000"},
 		AllowOriginFunc:  func(origin string) bool { return true },
 		AllowCredentials: true,
 		AllowedHeaders:   []string{"Content-Type"},

@@ -1,0 +1,14 @@
+$font-size-large: 55px;
+$font-size-medium: 32px;
+
+.Title {
+    &.H1  {
+        font-size: $font-size-large;
+    }
+
+    &.H2 {
+        font-size: $font-size-medium;
+    }
+}
+
+

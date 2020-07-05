@@ -8,14 +8,14 @@ import (
 )
 
 type GetNewsRequest struct {
-	Ticker string `request:"query" json:"ticker" log:"true"`
+	Ticker string `request:"path" json:"ticker" log:"true"`
 }
 
 func (gqr GetNewsRequest) Info() commons.EndpointInfo {
 	return commons.EndpointInfo{
 		Path:         "News",
 		Method:       "GET",
-		RelativePath: "/news",
+		RelativePath: "/news/{ticker}",
 	}
 }
 
@@ -33,21 +33,11 @@ func (gqs GetNewsService) Execute(ctx context.Context, req interface{}) (interfa
 
 	request := req.(*GetNewsRequest)
 	finnClient := gqs.GetFinnClient()
-	var news []finnhub.News
 
-	if request.Ticker == "" {
-		generalNews, _, err := finnClient.GeneralNews(ctx, "general", nil)
+	news, _, err := finnClient.CompanyNews(ctx, request.Ticker, "2020-05-01", "2020-05-01")
 
-		if err != nil {
-			return GetNewsResponse{}, err
-		}
-		news = generalNews
-	} else {
-		companyNews, _, err := finnClient.CompanyNews(ctx, request.Ticker, "2020-05-01", "2020-05-01")
-		if err != nil {
-			return GetNewsResponse{}, err
-		}
-		news = companyNews
+	if err != nil {
+		return GetNewsResponse{}, err
 	}
 
 	return GetNewsResponse{

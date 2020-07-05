@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { TextTitle, TextSubTitle } from '../../components/Atoms';
 
 function News(): JSX.Element {
+  const [news, setNews] = useState();
   async function getNews() {
     try {
       const response = await fetch('http://localhost:8080/news');
       const data = await response.json();
-      console.log('data', data);
+      const { news } = data;
+      setNews(news);
+      console.log();
     } catch (error) {
       console.log(error);
     }
@@ -15,6 +19,15 @@ function News(): JSX.Element {
     <div>
       <h1>News</h1>
       <button onClick={getNews}>Get News</button>
+      {news &&
+        news.map((item) => {
+          return (
+            <div key={item.id}>
+              <TextTitle>{item.headline}</TextTitle>
+              <TextSubTitle>{item.summary}</TextSubTitle>
+            </div>
+          );
+        })}
     </div>
   );
 }

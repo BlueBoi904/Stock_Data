@@ -1,0 +1,1 @@
+export { useGetNews } from './useGetNews';

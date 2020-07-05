@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextTitle, TextSubTitle } from '../../components/Atoms';
+import { TextTitle, TextSubTitle } from '../../components/atoms';
 
 function News(): JSX.Element {
   const [news, setNews] = useState();

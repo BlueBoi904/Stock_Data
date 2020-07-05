@@ -11,4 +11,11 @@
     background-color: white;
     border-top: 3px solid $header-top-border;
     box-shadow: 1px 2px $gray-1;
+
+    .container {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 100%;
+    }
 }

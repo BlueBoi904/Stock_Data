@@ -1,0 +1,10 @@
+@import "../../../assets/globalStyles/variables.scss";
+
+.Header {
+    a {
+        color: red;
+        text-decoration: none;
+        text-align: center;
+        font-size: $font-size-body;
+    }
+}

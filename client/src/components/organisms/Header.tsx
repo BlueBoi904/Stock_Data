@@ -1,11 +1,13 @@
 import React from 'react';
-import { TextTitle } from '../atoms';
+import { NavbarLink } from '../atoms';
 import './styles/Header.scss';
 
 export function Header() {
   return (
     <div className="Header">
-      <TextTitle>Stock App</TextTitle>
+      <div className="container">
+        <NavbarLink title="Stock App" />
+      </div>
     </div>
   );
 }

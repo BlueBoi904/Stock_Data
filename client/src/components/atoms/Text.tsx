@@ -16,3 +16,19 @@ export function TextSubTitle({ children }: TextComponents) {
 export function TextBody({ children }: TextComponents) {
   return <div className="Title body">{children}</div>;
 }
+
+export function TextListTag({ children }: TextComponents) {
+  return (
+    <div className="TextListTag">
+      <span>{children}</span>
+    </div>
+  );
+}
+
+export function SubTextTag({ children }: TextComponents) {
+  return (
+    <div className="SubTextTag">
+      <span>{children}</span>
+    </div>
+  );
+}

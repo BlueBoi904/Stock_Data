@@ -3,7 +3,7 @@
 .Title {
     margin: 0px;
 
-    &.H1  {
+    &.H1 {
         font-family: "ubuntu-regular";
         font-size: $font-size-title;
     }
@@ -19,4 +19,17 @@
     }
 }
 
+.TextListTag {
+    span {
+        font-family: "ubuntu-regular";
+        font-size: $font-size-tag;
+    }
+}
 
+.SubTextTag {
+    span {
+        font-family: "ubuntu-regular";
+        font-size: $font-size-sub-tag;
+        color: $light-purple
+    }
+}

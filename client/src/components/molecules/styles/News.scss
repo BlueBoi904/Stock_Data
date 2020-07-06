@@ -1,0 +1,41 @@
+@import "../../../assets/globalStyles/variables.scss";
+
+.News {
+
+    h2 {
+        margin-bottom: 15px;
+    }
+
+    .news-link {
+
+
+        ol {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            @include flex;
+            color: #1E6DC0;
+            font-size: $font-size-tag;
+        }
+
+        a {
+            padding: 0 7px;
+            font-size: inherit;
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+
+        a:hover {
+            background-color: $light-blue;
+        }
+    }
+
+
+
+
+}

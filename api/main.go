@@ -51,6 +51,10 @@ func handleRequests() {
 			Endpoint: new(services.GetScrapedFinviz),
 			Service:  new(services.GetScrapedFinvizService),
 		},
+		{
+			Endpoint: new(services.GetHistoricalRequest),
+			Service:  new(services.GetHistoricalService),
+		},
 	}
 
 	var (

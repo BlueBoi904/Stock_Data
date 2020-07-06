@@ -1,9 +1,9 @@
 import React from 'react';
 import { BaseHomeLayout } from './templates';
-import { NewClient } from '../../api';
+import { API } from '../../api';
 
 export function Home() {
-  NewClient.get('/historical', { ticker: 'TSLA' }).then(
+  API.get('/historical', { ticker: 'TSLA' }).then(
     (res) => {
       console.log(res);
     },

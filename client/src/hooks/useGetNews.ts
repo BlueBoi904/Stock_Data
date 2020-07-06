@@ -29,7 +29,9 @@ export function useGetNews(): NewsHookType {
       const datum: { news: News[] } = await response.json();
       const { news } = datum;
       console.log(datum);
-      setData(news);
+      if (news) {
+        setData(news);
+      }
     } catch (error) {
       console.log(error);
     }

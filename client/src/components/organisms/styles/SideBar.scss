@@ -3,11 +3,11 @@
 .SideBar {
     width: 164px;
     flex-shrink: 0;
+    max-height: calc(100vh - $header-size);
     .sticky {
         position: sticky;
         overflow-y: auto;
         top: $header-size;
         width: auto;
-        max-height: calc(100vh - $header-size);
     }
 }

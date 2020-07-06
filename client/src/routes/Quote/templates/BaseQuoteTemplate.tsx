@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Body } from '../../../components/organisms';
+import { Header, Body, MainContent } from '../../../components/organisms';
 import { TextTitle } from '../../../components/atoms';
 
 function TempCheck() {
@@ -17,7 +17,9 @@ export function BaseQuoteTemplate({}) {
   return (
     <div>
       <Header />
-      <Body>{TempCheck()}</Body>
+      <Body>
+        <MainContent>{TempCheck()}</MainContent>
+      </Body>
     </div>
   );
 }

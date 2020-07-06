@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Body } from '../../../components/organisms';
+import { Header, Body, MainContent } from '../../../components/organisms';
 import { News } from '../../../components/molecules/index';
 
 export function BaseNewsLayout({ ticker }: { ticker: string }) {
@@ -7,7 +7,9 @@ export function BaseNewsLayout({ ticker }: { ticker: string }) {
     <div>
       <Header />
       <Body>
-        <News ticker={ticker} />
+        <MainContent>
+          <News ticker={ticker} />
+        </MainContent>
       </Body>
     </div>
   );

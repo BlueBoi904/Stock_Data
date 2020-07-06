@@ -6,7 +6,7 @@ export function SearchBar() {
   return (
     <div className="SearchBar">
       <Icon name="search" />
-      <input type="search" placeholder="Enter a stock Ticker" />
+      <input type="search" placeholder="Search for tickers..." />
     </div>
   );
 }

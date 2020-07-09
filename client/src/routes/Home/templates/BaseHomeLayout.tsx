@@ -4,8 +4,10 @@ import {
   Body,
   MainContent,
   SideBar,
+  HistoricalTable,
 } from '../../../components/organisms';
 import { TextTitle } from '../../../components/atoms';
+import { useHistoricalData } from '../../../hooks';
 
 function TempCheck(num: number) {
   function items() {
@@ -19,12 +21,15 @@ function TempCheck(num: number) {
 }
 
 export function BaseHomeLayout({}) {
+  const { data } = useHistoricalData('TSLA');
   return (
     <div>
       <Header />
       <Body>
         <SideBar>{TempCheck(25)}</SideBar>
-        <MainContent>{TempCheck(50)}</MainContent>
+        <MainContent>
+          <HistoricalTable data={data} />
+        </MainContent>
       </Body>
     </div>
   );

@@ -25,14 +25,18 @@ function buildHandlers(baseUrl, type: METHODS) {
   ) => {
     let url = `${base}${path}`;
 
-    const headers: { [key: string]: string } = {};
+    const headers: { [key: string]: string } = {
+      Accept: 'application/json, text/plain, */*',
+    };
     const init: RequestInit = {
       method: type,
+      mode: 'cors',
       headers,
     };
 
     if (inputs !== undefined) {
       if (type === 'GET') {
+        headers['Content-Type'] = 'application/x-www-form-urlencoded';
         url += queryStringSerialize(inputs);
       } else {
         headers['Content-Type'] = 'application/json';
@@ -97,6 +101,4 @@ export function isSyntaxJSON(value: string): boolean {
   );
 }
 
-export const NewClient = APIClient.create('http://localhost:8080');
-
-console.log(NewClient);
+export const API = APIClient.create('http://localhost:8080');

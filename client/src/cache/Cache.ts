@@ -33,7 +33,7 @@ function useCache<Key extends string, Data>(
   key: Key,
 ): Async<Data> {
   const entry = cache.accessEntry(key);
-  return useMutable<Async<Data>>(entry);
+  return useMutable(entry);
 }
 
 export { Cache, useCache };

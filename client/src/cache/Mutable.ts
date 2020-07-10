@@ -33,22 +33,36 @@ class Mutable<Data> {
   };
 }
 
-function useMutable<Data>(mutable: Mutable<Data>) {
-  const [value, setValue] = useState(mutable.get());
+function identity<T>(x: T): T {
+  return x;
+}
+
+function useMutable<Value>(mutable: Mutable<Value>): Value {
+  return useMutableSelect(mutable, identity);
+}
+
+function useMutableSelect<Data, DataSelection>(
+  mutable: Mutable<Data>,
+  select: (value: Data) => DataSelection,
+) {
+  const [value, setValue] = useState(select(mutable.get()));
+
   useEffect(() => {
     if (!(value instanceof Promise)) {
       return;
     }
-    const cancelled = false;
+    let cancelled = false;
 
     function done() {
       if (!cancelled) {
-        setValue(mutable.get());
+        setValue(select(mutable.get()));
+        cancelled = true;
       }
     }
     value.then(done, done);
-    return mutable.listen(() => setValue(mutable.get()));
+    return mutable.listen(() => setValue(select(mutable.get())));
   }, [mutable]);
+
   return value;
 }
 

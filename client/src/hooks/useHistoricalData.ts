@@ -12,8 +12,10 @@ const HistoricalCache = new Cache<string, string[][]>({
 });
 
 export function useHistoricalData(ticker: string) {
-  const data = useCache(HistoricalCache, ticker);
+  const data = useCache(HistoricalCache, ticker).get();
   const [error, setError] = useState(null);
+
+  const isPromise = data instanceof Promise;
 
   useEffect(() => {
     try {
@@ -23,5 +25,9 @@ export function useHistoricalData(ticker: string) {
     }
   }, []);
 
-  return { data, error };
+  return {
+    data: data instanceof Promise ? undefined : data,
+    loading: isPromise ? true : false,
+    error,
+  };
 }

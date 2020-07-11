@@ -4,12 +4,13 @@ import './styles/SearchBar.scss';
 import { useHistory } from 'react-router-dom';
 
 export function SearchBar() {
-  const [value, setValue] = useState('');
+  const [text, setText] = useState('');
   const history = useHistory();
 
-  async function onSubmit(e) {
+  function onSubmit(e) {
     e.preventDefault();
-    history.push(`/quote/${value}`);
+    history.push(`/historical/${text}`);
+    setText('');
   }
 
   return (
@@ -17,9 +18,9 @@ export function SearchBar() {
       <Icon name="search" />
       <form onSubmit={onSubmit}>
         <input
-          value={value}
+          value={text}
           onChange={(e) => {
-            setValue(e.target.value);
+            setText(e.target.value);
           }}
           type="search"
           placeholder="Enter a stock ticker..."

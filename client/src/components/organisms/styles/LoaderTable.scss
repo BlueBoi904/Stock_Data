@@ -1,0 +1,81 @@
+@import "../../../assets/globalStyles/variables.scss";
+
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+      background-color: $gray-2;
+    }
+    50% {
+      background-color: lighten($gray-2,20%);
+    }
+    100% {
+      background-color: $gray-2;
+    }
+  }
+  @keyframes reversepulse {
+    0% {
+      background-color: lighten($gray-2,20%)
+    }
+    50% {
+      background-color: $gray-2;
+    }
+    100% {
+      background-color: lighten($gray-2,20%);
+    }
+  }
+
+.LoaderTable {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2px 20px;
+    margin-top: 20px  + $font-size-subtitle;
+
+    table {
+        height: 800px;
+        width: 600px;
+        border: 6px solid $green-dark;
+        border-radius: 20px;
+        border-spacing: unset;
+        animation: fadein 2s ease ease-in;
+
+        th { 
+            color: white;
+            padding: 10px;
+            background-color: $green-dark; 
+            
+        }
+
+        tr {
+            width: 100%;
+        }
+        td {
+           width: auto;
+        }
+
+        tr:nth-child(odd){
+            animation: pulse 3s infinite ease-in-out;
+            animation-delay: 1.5s;
+            background-color: lighten($gray-2,20%);
+        }
+      
+        tr:nth-child(even) {
+            animation: pulse 3s infinite ease-in-out;
+            background-color: $table-even-rows;
+        }
+    
+        td {
+           padding: 10px;
+        }
+    }
+
+}

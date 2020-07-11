@@ -1,5 +1,17 @@
 @import "../../../assets/globalStyles/variables.scss";
 
+@keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
 .HistoricalTable {
     margin-left: auto;
     margin-right: auto;
@@ -11,6 +23,18 @@
         border: 6px solid $green-dark;
         border-radius: 20px;
         border-spacing: unset;
+    }
+
+    tbody {
+        @for $i from 1 through 20 {
+            tr {
+               animation: .3s ease-in-out both fade-in;
+        
+              &:nth-child(#{$i}) {
+                animation-delay: $i * (.01s);
+              }
+            }
+          }
     }
 
     th { 

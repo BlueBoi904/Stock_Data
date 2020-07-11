@@ -3,5 +3,7 @@ export { Body } from './Body';
 export { SideBar } from './SideBar';
 export { MainContent } from './MainContent';
 export { HistoricalTable } from './HistoricalTable';
-export { RecentSearches } from './RecentSearches';
+export { PopularSearch } from './PopularSearch';
 export { ErrorBoundary } from './ErrorBoundary';
+export { LoaderTable } from './LoaderTable';
+export { RecentSearch } from './RecentSearch';

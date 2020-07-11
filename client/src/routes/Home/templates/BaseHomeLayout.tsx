@@ -5,24 +5,25 @@ import {
   HistoricalTable,
   MainContent,
   SideBar,
-  RecentSearches,
+  PopularSearch,
+  RecentSearch,
   ErrorBoundary,
 } from '../../../components/organisms';
 import { HistoricalCache } from 'hooks/useHistoricalData';
 
 export function BaseHomeLayout({ ticker }: { ticker?: string }) {
-  console.log(ticker);
   HistoricalCache.preload(ticker);
   return (
     <div>
       <Header />
       <Body>
         <SideBar>
-          <RecentSearches />
+          <PopularSearch />
+          <RecentSearch />
         </SideBar>
         <MainContent>
           <ErrorBoundary>
-            <HistoricalTable ticker={ticker} />
+            <HistoricalTable key={ticker} ticker={ticker} />
           </ErrorBoundary>
         </MainContent>
       </Body>

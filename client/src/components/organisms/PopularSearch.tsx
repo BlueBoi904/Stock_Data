@@ -1,21 +1,21 @@
 import React from 'react';
 import { TextBody, TextSubTitleSmall, NavLink } from '../atoms';
-import './styles/RecentSearches.scss';
+import './styles/PopularSearch.scss';
 
-export function RecentSearches() {
+export function PopularSearch() {
   return (
-    <div className="RecentSearches">
+    <div className="PopularSearch">
       <TextSubTitleSmall>Popular Stocks</TextSubTitleSmall>
-      <NavLink path="/home/TSLA">
+      <NavLink path="/historical/TSLA">
         <TextBody>TSLA</TextBody>
       </NavLink>
-      <NavLink path="/home/AAPL">
+      <NavLink path="/historical/AAPL">
         <TextBody>AAPL</TextBody>
       </NavLink>
-      <NavLink path="/home/SNAP">
+      <NavLink path="/historical/SNAP">
         <TextBody>SNAP</TextBody>
       </NavLink>
-      <NavLink path="/home/GILD">
+      <NavLink path="/historical/GILD">
         <TextBody>GILD</TextBody>
       </NavLink>
     </div>

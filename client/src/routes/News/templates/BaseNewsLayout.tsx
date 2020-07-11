@@ -4,7 +4,7 @@ import {
   Header,
   MainContent,
   SideBar,
-  RecentSearches,
+  PopularSearch,
 } from '../../../components/organisms';
 
 // Removed News as I don't want to make the call right now and waste my API keys limits
@@ -14,7 +14,7 @@ export function BaseNewsLayout({}: { ticker: string }) {
       <Header />
       <Body>
         <SideBar>
-          <RecentSearches />
+          <PopularSearch />
         </SideBar>
         <MainContent>
           <div />

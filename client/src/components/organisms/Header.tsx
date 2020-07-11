@@ -12,9 +12,6 @@ export function Header() {
           <li>
             <NavbarLink title="Latest News" path="/news/amd" />
           </li>
-          <li>
-            <NavbarLink title="Quote" path="/quote" />
-          </li>
         </ol>
         <SearchBar />
       </div>

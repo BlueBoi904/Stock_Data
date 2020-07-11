@@ -13,6 +13,11 @@
         font-size: $font-size-subtitle;
     }
 
+    &.H3 {
+        font-family: "ubuntu-regular";
+        font-size: $font-size-subtitle-small;
+    }
+
     &.body {
         font-family: "ubuntu-regular";
         font-size: $font-size-body;

@@ -1,9 +1,12 @@
 @import "../../../assets/globalStyles/variables.scss";
 
 .SideBar {
-    width: 164px;
+    width: 200px;
     flex-shrink: 0;
     max-height: calc(100vh - $header-size);
+    text-align: center;
+    padding-top: 10px;
+    border-right: 1px solid $gray-1;
     .sticky {
         position: sticky;
         overflow-y: auto;

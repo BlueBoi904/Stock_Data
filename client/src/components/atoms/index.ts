@@ -1,9 +1,10 @@
 export {
   TextTitle,
   TextSubTitle,
+  TextSubTitleSmall,
   TextBody,
   TextListTag,
   SubTextTag,
 } from './Text';
-export { NavbarLink } from './NavLink';
+export { NavbarLink, NavLink } from './NavLink';
 export { Icon } from './Icon';

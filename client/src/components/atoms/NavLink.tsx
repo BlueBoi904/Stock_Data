@@ -10,3 +10,13 @@ export function NavbarLink({ title, path }: { title: string; path: string }) {
     </Link>
   );
 }
+
+export function NavLink({
+  children,
+  path,
+}: {
+  children: JSX.Element;
+  path: string;
+}) {
+  return <Link to={path}>{children}</Link>;
+}

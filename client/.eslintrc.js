@@ -3,12 +3,22 @@ module.exports = {
     plugins: ['@typescript-eslint', 'react', 'react-native'],
     root: true,
     extends: ['plugin:@typescript-eslint/recommended', '@react-native-community'],
+    env: {
+      es6: true,
+      node: true,
+      browser: true,
+      jest: true,
+    },
+    globals: {
+      __DEV__: true,
+      __TEST__: true,
+    },
     rules: {
       '@typescript-eslint/no-explicit-any': 2,
       '@typescript-eslint/no-non-null-assertion': 0,
       '@typescript-eslint/no-use-before-define': 0,
       "@typescript-eslint/explicit-module-boundary-types": "off",
-      "no-empty-pattern": "off",
+      "no-empty-pattern": 0,
       "react-native/no-unused-styles": 2,
       "react-native/no-inline-styles": 2,
       "react-native/no-color-literals": 2,

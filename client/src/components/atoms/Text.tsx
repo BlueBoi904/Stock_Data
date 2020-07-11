@@ -13,6 +13,10 @@ export function TextSubTitle({ children }: TextComponents) {
   return <h2 className="Title H2">{children}</h2>;
 }
 
+export function TextSubTitleSmall({ children }: TextComponents) {
+  return <h2 className="Title H3">{children}</h2>;
+}
+
 export function TextBody({ children }: TextComponents) {
   return <div className="Title body">{children}</div>;
 }

@@ -6,20 +6,24 @@
     padding: 2px 20px;
     margin-top: 20px;
     text-align: center;
+    
     table {
         border: 6px solid $green-dark;
         border-radius: 20px;
         border-spacing: unset;
     }
+
     th { 
         color: white;
         padding: 10px;
         background-color: $green-dark;
         
     }
+
     tr:nth-child(even) {
         background-color: $table-even-rows;
-      }
+    }
+
     td {
        padding: 10px;
     }

@@ -4,7 +4,7 @@ import { API } from '../api';
 
 const HistoricalCache = new Cache<string, string[][]>({
   async load(key) {
-    const data = await API.get('/historical', {
+    const { data } = await API.get('/historical', {
       ticker: key,
     });
     return data;
@@ -20,5 +20,6 @@ export function useHistoricalData(ticker: string) {
       console.log(err);
     }
   }, []);
-  return asyncValue;
+
+  return { ...asyncValue, ticker };
 }

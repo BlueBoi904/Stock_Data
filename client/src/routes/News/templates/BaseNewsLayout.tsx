@@ -1,15 +1,13 @@
 import React from 'react';
 import { Header, Body, MainContent } from '../../../components/organisms';
-import { News } from '../../../components/molecules/index';
 
-export function BaseNewsLayout({ ticker }: { ticker: string }) {
+// Removed News as I don't want to make the call right now and waste my API keys limits
+export function BaseNewsLayout({}: { ticker: string }) {
   return (
     <div>
       <Header />
       <Body>
-        <MainContent>
-          <News ticker={ticker} />
-        </MainContent>
+        <MainContent />
       </Body>
     </div>
   );

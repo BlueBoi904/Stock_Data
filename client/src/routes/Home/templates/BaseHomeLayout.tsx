@@ -22,7 +22,6 @@ function TempCheck(num: number) {
 
 export function BaseHomeLayout({}) {
   const data = useHistoricalData('TSLA');
-  console.log(data);
   return (
     <div>
       <Header />

@@ -8,6 +8,7 @@ module.exports = {
       '@typescript-eslint/no-non-null-assertion': 0,
       '@typescript-eslint/no-use-before-define': 0,
       "@typescript-eslint/explicit-module-boundary-types": "off",
+      "no-empty-pattern": "off",
       "react-native/no-unused-styles": 2,
       "react-native/no-inline-styles": 2,
       "react-native/no-color-literals": 2,

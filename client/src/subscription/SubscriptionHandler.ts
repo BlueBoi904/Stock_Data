@@ -1,7 +1,7 @@
 import { Subscriber } from './Subscriber';
 import xs, { Listener } from 'xstream';
 
-function buildSubscription() {
+export function buildSubscription() {
   const subscription = Subscriber.get({ id: '12313' });
   return (subscribePath) => {
     let listener: Listener<unknown> | null = null;
@@ -56,6 +56,6 @@ function buildSubscription() {
   };
 }
 
-const SubscribeToPath = buildSubscription();
-
+//const SubscribeToPath = buildSubscription();
+const SubscribeToPath = {};
 export { SubscribeToPath };

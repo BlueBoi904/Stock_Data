@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import { TextSubTitle, TextBody } from '../atoms';
 import { useHistoricalData } from '../../hooks';
 import './styles/HistoricalTable.scss';
-import { LoaderTable } from './LoaderTable';
 
 export function HistoricalTable({ ticker }: { ticker: string }) {
   const { value, loading } = useHistoricalData(ticker);
@@ -38,7 +37,7 @@ export function HistoricalTable({ ticker }: { ticker: string }) {
   }, [value, ticker]);
 
   if (loading) {
-    return <LoaderTable />;
+    return null;
   }
 
   if (!value) {

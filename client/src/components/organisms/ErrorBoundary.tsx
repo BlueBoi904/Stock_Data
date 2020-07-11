@@ -3,7 +3,7 @@ import { MainContent } from './MainContent';
 import { TextTitle } from 'components/atoms';
 
 class ErrorBoundary extends React.Component<
-  { children: JSX.Element },
+  { children: JSX.Element | JSX.Element[] },
   { hasError: boolean; error: unknown }
 > {
   constructor(props) {

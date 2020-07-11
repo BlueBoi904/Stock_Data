@@ -7,6 +7,7 @@ import {
   SideBar,
   PopularSearch,
   RecentSearch,
+  StockAreaCharts,
   ErrorBoundary,
 } from '../../../components/organisms';
 import { HistoricalCache } from 'hooks/useHistoricalData';
@@ -22,8 +23,9 @@ export function BaseHomeLayout({ ticker }: { ticker?: string }) {
           <RecentSearch />
         </SideBar>
         <MainContent>
-          <ErrorBoundary>
-            <HistoricalTable key={ticker} ticker={ticker} />
+          <ErrorBoundary key={ticker}>
+            <StockAreaCharts ticker={ticker} />
+            <HistoricalTable ticker={ticker} />
           </ErrorBoundary>
         </MainContent>
       </Body>

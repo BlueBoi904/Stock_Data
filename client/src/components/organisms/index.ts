@@ -7,3 +7,4 @@ export { PopularSearch } from './PopularSearch';
 export { ErrorBoundary } from './ErrorBoundary';
 export { LoaderTable } from './LoaderTable';
 export { RecentSearch } from './RecentSearch';
+export { StockAreaCharts } from './StockAreaCharts';

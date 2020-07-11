@@ -19,7 +19,6 @@ export function RecentSearch() {
     }
     return keys;
   }, [setOfKeys]);
-  console.log(setOfKeys);
 
   if (setOfKeys.size === 0) {
     return null;

@@ -1,3 +1,6 @@
+import { useForceUpdate } from 'utils/useForceUpdate';
+import { useEffect } from 'react';
+
 enum AsyncStatus {
   Pending = 'pending',
   Resolved = 'resolved',
@@ -63,4 +66,42 @@ type AsyncUnion<Value> =
       readonly value: unknown;
     };
 
-export { Async };
+function useAsyncValue<Data>(
+  mutable: Async<Data>,
+): { loading: boolean; value: undefined | Data } {
+  const value = useAsyncForceUpdate(mutable);
+
+  if (value instanceof Promise) {
+    return { loading: true, value: undefined };
+  } else {
+    return { loading: false, value };
+  }
+}
+
+function useAsyncForceUpdate<Data>(mutable: Async<Data>) {
+  const asyncValue = mutable.get();
+  const forceUpdate = useForceUpdate();
+
+  useEffect(() => {
+    if (!(asyncValue instanceof Promise)) {
+      return;
+    }
+    let cancelled = false;
+
+    function done() {
+      if (!cancelled) {
+        forceUpdate();
+      }
+    }
+
+    asyncValue.then(done, done);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [asyncValue, forceUpdate]);
+
+  return asyncValue;
+}
+
+export { Async, useAsyncValue };

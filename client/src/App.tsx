@@ -3,9 +3,9 @@ import './App.scss';
 import { News } from './routes/News/News';
 import Quote from './routes/Quote/Quote';
 import { Home } from './routes/Home/Home';
-import { SubscribeToPath } from './subscription/SubscriptionHandler';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+/*
 const SubToTest = SubscribeToPath('test');
 const SubToOther = SubscribeToPath('other');
 
@@ -20,6 +20,7 @@ SubToOther.addListener({
     console.log('Subscribed to OTher', message);
   },
 });
+*/
 
 function App(): JSX.Element {
   return (

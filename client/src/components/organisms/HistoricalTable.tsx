@@ -1,9 +1,13 @@
 import React from 'react';
+import { useHistoricalData } from '../../hooks';
 
-export function HistoricalTable({ data }: { data: string[][] }) {
-  if (data && data.length > 0) {
-    return <div>Has Data</div>;
+export function HistoricalTable({
+  value,
+  loading,
+}: ReturnType<typeof useHistoricalData>) {
+  if (loading) {
+    return <div>Loading The Page</div>;
   }
-
-  return <div>loading</div>;
+  console.log(value);
+  return <div>We Have Data</div>;
 }

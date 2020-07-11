@@ -21,14 +21,14 @@ function TempCheck(num: number) {
 }
 
 export function BaseHomeLayout({}) {
-  const { data } = useHistoricalData('TSLA');
+  const data = useHistoricalData('TSLA');
   return (
     <div>
       <Header />
       <Body>
         <SideBar>{TempCheck(25)}</SideBar>
         <MainContent>
-          <HistoricalTable data={data} />
+          <HistoricalTable {...data} />
         </MainContent>
       </Body>
     </div>

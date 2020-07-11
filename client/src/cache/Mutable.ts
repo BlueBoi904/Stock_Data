@@ -37,7 +37,7 @@ function identity<T>(x: T): T {
   return x;
 }
 
-function useMutable<Value>(mutable: Mutable<Value>): Value {
+function useMutable<Value>(mutable: Mutable<Value>) {
   return useMutableSelect(mutable, identity);
 }
 
@@ -48,18 +48,6 @@ function useMutableSelect<Data, DataSelection>(
   const [value, setValue] = useState(select(mutable.get()));
 
   useEffect(() => {
-    if (!(value instanceof Promise)) {
-      return;
-    }
-    let cancelled = false;
-
-    function done() {
-      if (!cancelled) {
-        setValue(select(mutable.get()));
-        cancelled = true;
-      }
-    }
-    value.then(done, done);
     return mutable.listen(() => setValue(select(mutable.get())));
   }, [mutable]);
 

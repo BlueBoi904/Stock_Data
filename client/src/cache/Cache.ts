@@ -1,6 +1,6 @@
 // How often should we add to cache
 import { Mutable, useMutable } from './Mutable';
-import { Async } from './Async';
+import { Async, useAsyncValue } from './Async';
 
 class Cache<Key extends string, Data> {
   _load: (key: Key) => Promise<Data>;
@@ -28,12 +28,9 @@ class Cache<Key extends string, Data> {
   };
 }
 
-function useCache<Key extends string, Data>(
-  cache: Cache<Key, Data>,
-  key: Key,
-): Async<Data> {
+function useCache<Key extends string, Data>(cache: Cache<Key, Data>, key: Key) {
   const entry = cache.accessEntry(key);
-  return useMutable(entry);
+  return useAsyncValue(useMutable(entry));
 }
 
 export { Cache, useCache };

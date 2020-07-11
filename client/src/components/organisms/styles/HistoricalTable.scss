@@ -18,11 +18,14 @@
     padding: 2px 20px;
     margin-top: 20px;
     text-align: center;
+    align-self: center;
     
     table {
         border: 0px solid $deep-red;
         border-radius: 5px;
         border-spacing: unset;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     tr:hover {

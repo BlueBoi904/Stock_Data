@@ -5,23 +5,6 @@ import Quote from './routes/Quote/Quote';
 import { Home } from './routes/Home/Home';
 import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
-/*
-const SubToTest = SubscribeToPath('test');
-const SubToOther = SubscribeToPath('other');
-
-SubToTest.addListener({
-  next: (message) => {
-    console.log('Subscribed to Test', message);
-  },
-});
-
-SubToOther.addListener({
-  next: (message) => {
-    console.log('Subscribed to OTher', message);
-  },
-});
-*/
-
 function App(): JSX.Element {
   return (
     <Router>
@@ -29,7 +12,7 @@ function App(): JSX.Element {
         <Route path="/" exact component={Home} />
         <Route path="/home/:ticker" component={Home} />
         <Route path="/news/:ticker" component={News} />
-        <Route path="/quote" exact component={Quote} />
+        <Route path="/quote/:ticker" exact component={Quote} />
       </Switch>
     </Router>
   );

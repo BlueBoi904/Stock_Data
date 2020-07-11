@@ -1,24 +1,18 @@
 import React from 'react';
 import { Body, Header, MainContent } from '../../../components/organisms';
-import { TextTitle } from '../../../components/atoms';
-
-function TempCheck() {
-  function items() {
-    const itemsArray: ReturnType<typeof TextTitle>[] = [];
-    for (let i = 100; i > 50; i--) {
-      itemsArray.push(<TextTitle key={i}>{i}</TextTitle>);
-    }
-    return itemsArray;
-  }
-  return items();
-}
+import { useParams } from 'react-router-dom';
 
 export function BaseQuoteTemplate({}) {
+  const { ticker } = useParams();
   return (
     <div>
       <Header />
       <Body>
-        <MainContent>{TempCheck()}</MainContent>
+        <MainContent>
+          <div>
+            <h1>{ticker}</h1>
+          </div>
+        </MainContent>
       </Body>
     </div>
   );

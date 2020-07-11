@@ -12,6 +12,10 @@ export function HistoricalTable({
     return <div>Loading The Page</div>;
   }
 
+  if (!value) {
+    return <div>No Data Returned</div>;
+  }
+
   function constructTable() {
     const copy = [...value];
     const table = [];

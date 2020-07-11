@@ -49,12 +49,11 @@ function buildHandlers(baseUrl, type: METHODS) {
     }
 
     const response = await fetch(url, init);
-
+    const results = await response.json();
     if (response.ok) {
-      const results = await response.json();
       return results;
     } else {
-      throw new Error('Something Went Wrong');
+      throw new Error(results.error);
     }
   };
 }

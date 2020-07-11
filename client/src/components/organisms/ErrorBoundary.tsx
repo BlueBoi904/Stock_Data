@@ -1,4 +1,6 @@
 import React from 'react';
+import { MainContent } from './MainContent';
+import { TextTitle } from 'components/atoms';
 
 class ErrorBoundary extends React.Component<
   { children: JSX.Element },
@@ -15,8 +17,18 @@ class ErrorBoundary extends React.Component<
 
   render() {
     if (this.state.hasError) {
-      // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>;
+      const error = (this.state.error as unknown) as Error;
+      return (
+        <MainContent>
+          <TextTitle>{error.message}</TextTitle>
+          <button
+            onClick={() => {
+              this.setState({ hasError: false, error: null });
+            }}>
+            Clear
+          </button>
+        </MainContent>
+      );
     }
 
     return this.props.children;

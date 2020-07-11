@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import './styles/News.scss';
 import { useGetNews } from '../../hooks';
-import { TextSubTitle, TextListTag, SubTextTag } from '../atoms';
+import { SubTextTag, TextListTag, TextSubTitle } from '../atoms';
 
 export function News({ ticker }: { ticker: string }) {
   const { data, getNews } = useGetNews();
   useEffect(() => {
     getNews(ticker);
-  }, [ticker]);
+  }, [getNews, ticker]);
   return (
     <div className="News">
       <TextSubTitle>News</TextSubTitle>
@@ -15,7 +15,7 @@ export function News({ ticker }: { ticker: string }) {
         <ol>
           {data.map((item) => {
             return (
-              <li>
+              <li key={item.url}>
                 <TextListTag>11:02AM</TextListTag>
                 <a href={item.url}>{item.headline}</a>
                 <SubTextTag>{item.source}</SubTextTag>

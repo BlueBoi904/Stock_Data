@@ -19,7 +19,7 @@ export function useHistoricalData(ticker: string) {
     } catch (err) {
       console.log(err);
     }
-  }, []);
+  }, [ticker]);
 
   return { ...asyncValue, ticker };
 }

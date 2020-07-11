@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 type Subscriber = () => void;
 
@@ -49,7 +49,7 @@ function useMutableSelect<Data, DataSelection>(
 
   useEffect(() => {
     return mutable.listen(() => setValue(select(mutable.get())));
-  }, [mutable]);
+  }, [mutable, select]);
 
   return value;
 }

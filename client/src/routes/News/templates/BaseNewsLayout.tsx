@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header, Body, MainContent } from '../../../components/organisms';
+import { Body, Header, MainContent } from '../../../components/organisms';
 
 // Removed News as I don't want to make the call right now and waste my API keys limits
 export function BaseNewsLayout({}: { ticker: string }) {
@@ -7,7 +7,9 @@ export function BaseNewsLayout({}: { ticker: string }) {
     <div>
       <Header />
       <Body>
-        <MainContent />
+        <MainContent>
+          <div />
+        </MainContent>
       </Body>
     </div>
   );

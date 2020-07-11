@@ -1,14 +1,14 @@
 import React from 'react';
-import { Header, Body, MainContent } from '../../../components/organisms';
+import { Body, Header, MainContent } from '../../../components/organisms';
 import { TextTitle } from '../../../components/atoms';
 
 function TempCheck() {
   function items() {
-    const items: ReturnType<typeof TextTitle>[] = [];
+    const itemsArray: ReturnType<typeof TextTitle>[] = [];
     for (let i = 100; i > 50; i--) {
-      items.push(<TextTitle key={i}>{i}</TextTitle>);
+      itemsArray.push(<TextTitle key={i}>{i}</TextTitle>);
     }
-    return items;
+    return itemsArray;
   }
   return items();
 }

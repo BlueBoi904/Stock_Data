@@ -45,7 +45,7 @@ class Async<Data> {
       case AsyncStatus.Rejected:
         throw asyncValue.value;
       default: {
-        const never: never = asyncValue.status;
+        const never: never = asyncValue['status'];
         throw new Error(`Unexpected status: ${never}`);
       }
     }

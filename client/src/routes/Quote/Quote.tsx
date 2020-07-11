@@ -1,5 +1,5 @@
-import React from 'react';
 import { BaseQuoteTemplate } from './templates';
+import React from 'react';
 
 function Quote(): JSX.Element {
   /*

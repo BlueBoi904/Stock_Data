@@ -1,21 +1,21 @@
 import React from 'react';
 import {
-  Header,
   Body,
+  Header,
+  HistoricalTable,
   MainContent,
   SideBar,
-  HistoricalTable,
 } from '../../../components/organisms';
 import { TextTitle } from '../../../components/atoms';
 import { useHistoricalData } from '../../../hooks';
 
 function TempCheck(num: number) {
   function items() {
-    const items: ReturnType<typeof TextTitle>[] = [];
+    const itemsArray: ReturnType<typeof TextTitle>[] = [];
     for (let i = 0; i <= num; i++) {
-      items.push(<TextTitle key={i}>{i}</TextTitle>);
+      itemsArray.push(<TextTitle key={i}>{i}</TextTitle>);
     }
-    return items;
+    return itemsArray;
   }
   return items();
 }

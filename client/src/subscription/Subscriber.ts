@@ -135,7 +135,8 @@ class Subscriber {
     if (this.listener !== null) {
       this.listener.error({ type: 'error', error });
     } else {
-      console.error(error); // eslint-disable-line no-console
+      // eslint-disable-next-line no-console
+      console.error(error);
     }
   }
 

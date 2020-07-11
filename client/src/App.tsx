@@ -3,7 +3,7 @@ import './App.scss';
 import { News } from './routes/News/News';
 import Quote from './routes/Quote/Quote';
 import { Home } from './routes/Home/Home';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 
 /*
 const SubToTest = SubscribeToPath('test');

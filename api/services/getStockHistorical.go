@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/Stock_Data/api/commons"
 )
@@ -32,7 +33,11 @@ type GetHistoricalResponse struct {
 
 func (ghs GetHistoricalService) Execute(ctx context.Context, req interface{}) (interface{}, error) {
 	request := req.(*GetHistoricalRequest)
-	url := fmt.Sprintf("https://query1.finance.yahoo.com/v7/finance/download/%v?period1=1562375687&period2=1593998087&interval=1d&events=history", request.Ticker)
+	timeNow := time.Now()
+	timeDay := time.Hour * 24
+	timeStartUnit := timeNow.Add(time.Duration(-30) * timeDay).Unix()
+	timeEndUnit := time.Now().Unix()
+	url := fmt.Sprintf("https://query1.finance.yahoo.com/v7/finance/download/%v?period1=%v&period2=%v&interval=1d&events=history", request.Ticker, timeStartUnit, timeEndUnit)
 
 	data, err := readCSVFromUrl(url)
 	if err != nil {
@@ -61,6 +66,13 @@ func readCSVFromUrl(url string) ([][]string, error) {
 	}
 
 	defer resp.Body.Close()
+
+	if resp.StatusCode >= 300 {
+		return [][]string{}, commons.AllErrors{
+			Message: "No data found: symbol may be delisted",
+		}
+	}
+
 	reader := csv.NewReader(resp.Body)
 	reader.Comma = ';'
 	data, err := reader.ReadAll()

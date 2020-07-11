@@ -25,7 +25,7 @@ type GetScrapedFinvizService struct {
 }
 
 type TableData struct {
-	TableEntries []TableEntry `json:"stats"`
+	TableEntries map[string]string `json:"stats"`
 }
 
 type TableEntry struct {
@@ -42,31 +42,23 @@ func (gsfs GetScrapedFinvizService) Execute(ctx context.Context, req interface{}
 
 	c := colly.NewCollector()
 
-	tbData := TableData{
-		TableEntries: []TableEntry{},
-	}
+	tbData := make(map[string]string)
 
 	c.OnHTML("tr.table-dark-row", func(e *colly.HTMLElement) {
 		title := e.ChildTexts(".snapshot-td2-cp")
 		txt := e.ChildTexts(".snapshot-td2 b")
 
-		tableRow := make([]TableEntry, len(title))
-
 		for i, _ := range title {
-			tableRow[i] = TableEntry{
-				Key:   title[i],
-				Value: txt[i],
-			}
+			tbData[title[i]] = txt[i]
 		}
-		tbData.TableEntries = append(tbData.TableEntries, tableRow...)
 
-		fmt.Println(tableRow)
+		fmt.Println(tbData)
 	})
 
 	url := fmt.Sprintf("https://finviz.com/quote.ashx?t=%v", request.Ticker)
 	c.Visit(url)
 
-	if tbData.TableEntries == nil || len(tbData.TableEntries) == 0 {
+	if tbData == nil || len(tbData) == 0 {
 		return TableData{}, commons.AllErrors{Message: "Could not retrieve any data for " + request.Ticker}
 	}
 

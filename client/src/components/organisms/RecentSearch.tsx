@@ -11,13 +11,15 @@ export function RecentSearch() {
     {
       setOfKeys.forEach((key) => {
         keys.push(
-          <NavLink path={`/historical/${key}`}>
+          <NavLink key={key} path={`/historical/${key}`}>
             <TextBody>{key}</TextBody>
           </NavLink>,
         );
       });
     }
+    return keys;
   }, [setOfKeys]);
+  console.log(setOfKeys);
 
   if (setOfKeys.size === 0) {
     return null;
@@ -26,7 +28,7 @@ export function RecentSearch() {
   return (
     <div className="PopularSearch">
       <TextSubTitleSmall>Recent Search</TextSubTitleSmall>
-      {renderRecent}
+      {renderRecent()}
     </div>
   );
 }

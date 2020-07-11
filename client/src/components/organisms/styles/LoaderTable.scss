@@ -43,15 +43,15 @@
     table {
         height: 800px;
         width: 600px;
-        border: 6px solid $green-dark;
-        border-radius: 20px;
+        border: 0px solid $deep-red;
+        border-radius: 5px;
         border-spacing: unset;
         animation: fadein 2s ease ease-in;
 
         th { 
             color: white;
             padding: 10px;
-            background-color: $green-dark; 
+            background-color: $deep-red; 
             
         }
 

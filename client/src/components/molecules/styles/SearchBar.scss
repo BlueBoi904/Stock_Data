@@ -8,12 +8,18 @@
     margin: 0 10px;
     border: 1px solid $gray-d;
 
+    form {
+        @include flex;
+        width: 100%;
+    }
+
     &:focus-within {
         box-shadow: 0 0 0 2px $green-dark-fade;
     }
     
     .Icon {
         margin-right: 8px;
+        color: $deep-blue;
     }
 
     input {

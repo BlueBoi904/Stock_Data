@@ -20,15 +20,20 @@
     text-align: center;
     
     table {
-        border: 6px solid $green-dark;
-        border-radius: 20px;
+        border: 0px solid $deep-red;
+        border-radius: 5px;
         border-spacing: unset;
+    }
+
+    tr:hover {
+      color: white !important;
+      background-color: #2F8378!important;
     }
 
     tbody {
         @for $i from 1 through 20 {
             tr {
-               animation: .3s ease-in-out both fade-in;
+               animation: .2s ease-in-out both fade-in;
         
               &:nth-child(#{$i}) {
                 animation-delay: $i * (.01s);
@@ -40,7 +45,7 @@
     th { 
         color: white;
         padding: 10px;
-        background-color: $green-dark;
+        background-color: $deep-red;
         
     }
 

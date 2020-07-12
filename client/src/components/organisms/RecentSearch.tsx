@@ -26,7 +26,7 @@ export function RecentSearch() {
 
   return (
     <div className="PopularSearch">
-      <TextSubTitleSmall>Recent Search</TextSubTitleSmall>
+      <TextSubTitleSmall>Recently Viewed</TextSubTitleSmall>
       {renderRecent()}
     </div>
   );

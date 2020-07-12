@@ -20,7 +20,7 @@ export function SearchBar() {
         <input
           value={text}
           onChange={(e) => {
-            setText(e.target.value);
+            setText(e.target.value.toUpperCase());
           }}
           type="search"
           placeholder="Enter a stock ticker..."

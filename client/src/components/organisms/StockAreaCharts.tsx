@@ -47,13 +47,13 @@ export function StockAreaCharts({ ticker }: { ticker: string }) {
             data={constructTableData()}
             margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
             <defs>
-              <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#832F3A" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#832F3A" stopOpacity={0} />
-              </linearGradient>
-              <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="colorOpen" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#2F3A83" stopOpacity={0.8} />
                 <stop offset="95%" stopColor="#2F3A83" stopOpacity={0.1} />
+              </linearGradient>
+              <linearGradient id="colorClose" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#832F3A" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#832F3A" stopOpacity={0.1} />
               </linearGradient>
             </defs>
             <XAxis dataKey="date" />
@@ -63,16 +63,16 @@ export function StockAreaCharts({ ticker }: { ticker: string }) {
             <Area
               type="monotone"
               dataKey="open"
-              stroke="#8884d8"
+              stroke="#2F3A83"
               fillOpacity={1}
-              fill="url(#colorUv)"
+              fill="url(#colorOpen)"
             />
             <Area
               type="monotone"
               dataKey="close"
-              stroke="#82ca9d"
+              stroke="#832F3A"
               fillOpacity={1}
-              fill="url(#colorPv)"
+              fill="url(#colorClose)"
             />
           </AreaChart>
         </ResponsiveContainer>

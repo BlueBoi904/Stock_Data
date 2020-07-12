@@ -16,7 +16,7 @@ func (gqr GetScrapedFinviz) Info() commons.EndpointInfo {
 	return commons.EndpointInfo{
 		Path:         "ScrapedFinviz",
 		Method:       "GET",
-		RelativePath: "/finviz",
+		RelativePath: "/statistical",
 	}
 }
 

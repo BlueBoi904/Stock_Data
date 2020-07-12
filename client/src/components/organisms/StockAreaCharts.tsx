@@ -23,8 +23,8 @@ export function StockAreaCharts({ ticker }: { ticker: string }) {
       copy.splice(0, 1);
       structuredData = copy.map((rows) => {
         const date = moment(rows[0]).format('MMM Do YY');
-        const open = parseFloat(rows[1]).toFixed(2);
-        const close = parseFloat(rows[4]).toFixed(2);
+        const open = parseFloat(rows[1]);
+        const close = parseFloat(rows[4]);
         return {
           date,
           open,

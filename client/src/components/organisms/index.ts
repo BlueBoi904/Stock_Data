@@ -9,3 +9,4 @@ export { LoaderTable } from './LoaderTable';
 export { RecentSearch } from './RecentSearch';
 export { StockAreaCharts } from './StockAreaCharts';
 export { ErrorScreen } from './ErrorScreen';
+export { StatisticalHorizontal } from './StatisticalHorizontal';

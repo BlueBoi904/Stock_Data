@@ -50,6 +50,7 @@ function buildHandlers(baseUrl, type: METHODS) {
 
     const response = await fetch(url, init);
     const results = await response.json();
+
     if (response.ok) {
       return results;
     } else {

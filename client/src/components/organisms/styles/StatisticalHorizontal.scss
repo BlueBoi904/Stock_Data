@@ -1,0 +1,17 @@
+@import "../../../assets/globalStyles/variables.scss";
+
+
+.StatisticalHorizontal {
+    @include flex;
+    margin: 10px 0;
+    .stats-container {
+        flex-basis: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        overflow: hidden;
+        overflow-x: scroll;
+        background-color: lighten($gray-1, 18%);
+        border: 2px solid lighten($gray-1, 15%);
+    }
+
+}

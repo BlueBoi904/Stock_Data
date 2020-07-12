@@ -1,9 +1,8 @@
 @import "../../../assets/globalStyles/variables.scss";
 
 .SideBar {
-    width: 200px;
+    width: $side-bar-width;
     flex-shrink: 0;
-    max-height: calc(100vh - $header-size);
     text-align: center;
     padding-top: 10px;
     background-color: lighten($gray-2, 35%);

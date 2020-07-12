@@ -6,8 +6,6 @@
     max-height: calc(100vh - $header-size);
     text-align: center;
     padding-top: 10px;
-    border-right: 1px solid $gray-1;
-    box-shadow: 1px 0px 0px 0px lighten($gray-2, 25%);;
     background-color: lighten($gray-2, 35%);
     .sticky {
         position: sticky;

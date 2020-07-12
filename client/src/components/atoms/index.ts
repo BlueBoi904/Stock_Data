@@ -8,3 +8,4 @@ export {
 } from './Text';
 export { NavbarLink, NavLink } from './NavLink';
 export { Icon } from './Icon';
+export { Button } from './Button';

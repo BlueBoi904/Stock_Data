@@ -1,6 +1,5 @@
 import React from 'react';
-import { MainContent } from './MainContent';
-import { TextTitle } from 'components/atoms';
+import { ErrorScreen } from './ErrorScreen';
 
 class ErrorBoundary extends React.Component<
   { children: JSX.Element | JSX.Element[] },
@@ -19,15 +18,12 @@ class ErrorBoundary extends React.Component<
     if (this.state.hasError) {
       const error = (this.state.error as unknown) as Error;
       return (
-        <MainContent>
-          <TextTitle>{error.message}</TextTitle>
-          <button
-            onClick={() => {
-              this.setState({ hasError: false, error: null });
-            }}>
-            Clear
-          </button>
-        </MainContent>
+        <ErrorScreen
+          error={error}
+          onReset={() => {
+            this.setState({ hasError: false, error: null });
+          }}
+        />
       );
     }
 

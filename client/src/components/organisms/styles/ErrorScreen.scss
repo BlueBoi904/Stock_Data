@@ -1,0 +1,21 @@
+@import "../../../assets/globalStyles/variables.scss";
+
+
+.ErrorScreen {
+    @include flex;
+    flex-direction: column;
+    margin:40px;
+    height: 50vh;
+    background-color: $gray-0;
+    border-radius: 5px;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+
+    .text-container {
+        .body {
+            margin-top: 10px;
+        }
+    }
+    
+}

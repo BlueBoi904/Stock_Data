@@ -41,6 +41,11 @@ $light-purple: #aa6dc0;
 $light-blue: hsl(211, 73%, 85%);
 
 
+$gradrient-primary-color: $deep-red;
+
+$gradient-primary: linear-gradient(to right, $gradrient-primary-color, lighten($gradrient-primary-color,20%));
+$gradient-hover: linear-gradient(to right, lighten($gradrient-primary-color,20%),lighten($gradrient-primary-color,15%),$gradrient-primary-color);
+
 $table-dark-header: #353147;
 $table-even-rows: #f5f5f5;
 

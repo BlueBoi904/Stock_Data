@@ -1,6 +1,6 @@
 # Stock Data API
 
-Custom API and Client built with GO and Typescript
+Custom API and Client built with GO and Typescript allowing users to retrieve real time stock data and news.
 
 ## Description
 
@@ -24,8 +24,6 @@ Our RESTful API is designed to allow for consumtion of realtime stock data using
   yarn start
 ```
 
-## Help
-
 ## Authors
 
 Contributors names and contact info
@@ -34,8 +32,3 @@ Joseph Collins - https://github.com/TheJoeCollins
 
 Cliff Mirschel - https://github.com/BlueBoi904
 
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-
-- [Finnhub] https://github.com/Finnhub-Stock-API/finnhub-go
